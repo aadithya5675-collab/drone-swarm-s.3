@@ -1,0 +1,261 @@
+{
+ "scout": {
+  "mass_kg": 0.73,
+  "com_m": [
+   -0.0022,
+   0.0,
+   0.0102
+  ],
+  "inertia": {
+   "ixx": 0.001927,
+   "iyy": 0.002052,
+   "izz": 0.002215,
+   "ixy": 4.783e-07,
+   "ixz": 9.673e-05,
+   "iyz": -1.265e-08
+  },
+  "parts": [
+   [
+    "frame",
+    0.12
+   ],
+   [
+    "motor_1",
+    0.03
+   ],
+   [
+    "prop_1",
+    0.0045
+   ],
+   [
+    "motor_2",
+    0.03
+   ],
+   [
+    "prop_2",
+    0.0045
+   ],
+   [
+    "motor_3",
+    0.03
+   ],
+   [
+    "prop_3",
+    0.0045
+   ],
+   [
+    "motor_4",
+    0.03
+   ],
+   [
+    "prop_4",
+    0.0045
+   ],
+   [
+    "battery",
+    0.19
+   ],
+   [
+    "SpeedyBee F405 Mini stack 20x20",
+    0.02
+   ],
+   [
+    "Landing gear (4x CF legs)",
+    0.04
+   ],
+   [
+    "Top adapter plate",
+    0.012
+   ],
+   [
+    "NVIDIA Jetson Nano 4GB + carrier",
+    0.15
+   ],
+   [
+    "Sensor head: IMX219 RGB + Lepton 3.5 thermal",
+    0.03
+   ],
+   [
+    "M10 GNSS + compass on mast",
+    0.03
+   ]
+  ],
+  "hover_thrust_per_motor_n": 1.79,
+  "max_thrust_per_motor_n": 8.549,
+  "thrust_to_weight": 4.77
+ },
+ "mapper": {
+  "mass_kg": 1.0,
+  "com_m": [
+   0.0011,
+   0.0,
+   -0.012
+  ],
+  "inertia": {
+   "ixx": 0.003595,
+   "iyy": 0.003724,
+   "izz": 0.002523,
+   "ixy": 4.747e-07,
+   "ixz": 3.784e-05,
+   "iyz": 3.788e-21
+  },
+  "parts": [
+   [
+    "frame",
+    0.12
+   ],
+   [
+    "motor_1",
+    0.03
+   ],
+   [
+    "prop_1",
+    0.0045
+   ],
+   [
+    "motor_2",
+    0.03
+   ],
+   [
+    "prop_2",
+    0.0045
+   ],
+   [
+    "motor_3",
+    0.03
+   ],
+   [
+    "prop_3",
+    0.0045
+   ],
+   [
+    "motor_4",
+    0.03
+   ],
+   [
+    "prop_4",
+    0.0045
+   ],
+   [
+    "SpeedyBee F405 Mini stack 20x20",
+    0.02
+   ],
+   [
+    "Landing gear (4x CF legs, tall)",
+    0.055
+   ],
+   [
+    "4S 1550 mAh LiPo (top mount)",
+    0.185
+   ],
+   [
+    "Bottom adapter plate",
+    0.017
+   ],
+   [
+    "NVIDIA Jetson Nano 4GB + carrier (underslung)",
+    0.15
+   ],
+   [
+    "Livox Mid-360 3D lidar (inverted, under frame)",
+    0.285
+   ],
+   [
+    "M10 GNSS + compass on mast",
+    0.03
+   ]
+  ],
+  "hover_thrust_per_motor_n": 2.453,
+  "max_thrust_per_motor_n": 8.549,
+  "thrust_to_weight": 3.49
+ },
+ "relay": {
+  "mass_kg": 0.617,
+  "com_m": [
+   -0.0019,
+   0.0,
+   0.0086
+  ],
+  "inertia": {
+   "ixx": 0.00224,
+   "iyy": 0.002392,
+   "izz": 0.002077,
+   "ixy": 4.785e-07,
+   "ixz": 6.841e-05,
+   "iyz": -1.359e-08
+  },
+  "parts": [
+   [
+    "frame",
+    0.12
+   ],
+   [
+    "motor_1",
+    0.03
+   ],
+   [
+    "prop_1",
+    0.0045
+   ],
+   [
+    "motor_2",
+    0.03
+   ],
+   [
+    "prop_2",
+    0.0045
+   ],
+   [
+    "motor_3",
+    0.03
+   ],
+   [
+    "prop_3",
+    0.0045
+   ],
+   [
+    "motor_4",
+    0.03
+   ],
+   [
+    "prop_4",
+    0.0045
+   ],
+   [
+    "battery",
+    0.19
+   ],
+   [
+    "SpeedyBee F405 Mini stack 20x20",
+    0.02
+   ],
+   [
+    "Landing gear (4x CF legs)",
+    0.04
+   ],
+   [
+    "Top adapter plate",
+    0.012
+   ],
+   [
+    "RFD900x long-range modem + 2 dipoles",
+    0.03
+   ],
+   [
+    "Wi-Fi/LoRa mesh node + 2 dipoles",
+    0.025
+   ],
+   [
+    "Raspberry Pi Zero 2 W companion",
+    0.012
+   ],
+   [
+    "M10 GNSS + compass on mast",
+    0.03
+   ]
+  ],
+  "hover_thrust_per_motor_n": 1.513,
+  "max_thrust_per_motor_n": 8.549,
+  "thrust_to_weight": 5.65
+ }
+}

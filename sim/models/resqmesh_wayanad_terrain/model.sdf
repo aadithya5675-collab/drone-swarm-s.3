@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<sdf version="1.9">
+  <model name="resqmesh_wayanad_terrain">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><mesh><uri>model://resqmesh_wayanad_terrain/meshes/collision.stl</uri></mesh></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><heightmap>
+          <use_terrain_paging>false</use_terrain_paging>
+          <texture><diffuse>model://resqmesh_wayanad_terrain/materials/textures/ground.jpg</diffuse>
+                   <normal>model://resqmesh_wayanad_terrain/materials/textures/flat_normal.png</normal><size>3584.0</size></texture>
+          <uri>model://resqmesh_wayanad_terrain/materials/textures/heightmap.png</uri>
+          <size>3584.0 3584.0 871.91</size><pos>-686.00 -840.00 -53.27</pos>
+        </heightmap></geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

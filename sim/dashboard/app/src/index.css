@@ -1,0 +1,88 @@
+@import '@fontsource-variable/geist';
+@import '@fontsource-variable/jetbrains-mono';
+@import 'tailwindcss';
+
+/* ---- design tokens (locked in Figma: "ResQMesh Mission Control — design lock") ---- */
+:root {
+  --bg: #06080c;
+  --bg-2: #0a0d13;
+  --glass: rgb(255 255 255 / 0.045);
+  --glass-hi: rgb(255 255 255 / 0.075);
+  --line: rgb(255 255 255 / 0.09);
+  --line-2: rgb(255 255 255 / 0.05);
+  --fg: #e7eaf0;
+  --fg-hi: #f4f6fa;
+  --muted: rgb(231 234 240 / 0.56);
+  --faint: rgb(231 234 240 / 0.36);
+  --accent: #5eead4;
+  --alive: #4ade80;
+  --dead: #a1a1aa;
+  --cand: #fbbf24;
+  --danger: #f87171;
+  --scout: #f5b544;
+  --mapper: #7dd3fc;
+  --relay: #c4b5fd;
+  --camp: #fb7185;
+  --radius: 16px;
+}
+
+@theme inline {
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-hi: var(--fg-hi);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-alive: var(--alive);
+  --color-dead: var(--dead);
+  --color-cand: var(--cand);
+  --color-danger: var(--danger);
+  --color-scout: var(--scout);
+  --color-mapper: var(--mapper);
+  --color-relay: var(--relay);
+  --color-camp: var(--camp);
+}
+
+html, body, #root { height: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-sans);
+  font-size: 14px; line-height: 1.45; -webkit-font-smoothing: antialiased; font-feature-settings: 'ss01', 'cv11';
+}
+::selection { background: rgb(94 234 212 / 0.25); }
+* { scrollbar-width: thin; scrollbar-color: rgb(255 255 255 / 0.14) transparent; }
+.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+
+/* calm atmosphere: two faint glows and the topographic contour motif */
+.atmo { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.atmo::before, .atmo::after { content: ''; position: absolute; border-radius: 50%; filter: blur(120px); }
+.atmo::before { width: 70vw; height: 60vh; left: -18vw; top: -24vh; background: rgb(45 212 191 / 0.09); }
+.atmo::after { width: 60vw; height: 55vh; right: -14vw; bottom: -22vh; background: rgb(245 158 11 / 0.05); }
+
+/* restrained glass */
+.glass {
+  background: var(--glass); border: 1px solid var(--line); border-radius: var(--radius);
+  backdrop-filter: blur(22px) saturate(120%); -webkit-backdrop-filter: blur(22px) saturate(120%);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.04) inset, 0 24px 48px -24px rgb(0 0 0 / 0.6);
+}
+.glass-hi { background: var(--glass-hi); }
+.eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.hairline { border-color: var(--line-2); }
+
+/* explain mode: numbered cards on every panel */
+[data-explain] { position: relative; }
+body.explain [data-explain]::after {
+  content: attr(data-explain); position: absolute; inset: auto 10px 10px 10px; z-index: 30; padding: 10px 12px; border-radius: 12px;
+  background: rgb(6 8 12 / 0.92); border: 1px solid rgb(94 234 212 / 0.35); color: var(--fg); font-size: 12.5px; line-height: 1.45;
+  backdrop-filter: blur(10px); pointer-events: none;
+}
+
+@keyframes ping-ring { from { transform: scale(0.6); opacity: 0.9 } to { transform: scale(2.4); opacity: 0 } }
+.ping { animation: ping-ring 1.8s ease-out infinite; }
+@keyframes scan { from { transform: translateY(-100%) } to { transform: translateY(100%) } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}

@@ -1,0 +1,1241 @@
+{
+ "scout": {
+  "hide": [
+   "Broached Hexagon Socket Button Head Cap Screw ANSI B18.3.4M - M3 x 0.5 x 8 Steel Grade 2 Plain",
+   "Broached Hexagon Socket Button Head Cap Screw ANSI B18.3.4M - M3 x 0.5 x 8 Steel Grade 2 Plain",
+   "Broached Hexagon Socket Button Head Cap Screw ANSI B18.3.4M - M3 x 0.5 x 8 Steel Grade 2 Plain",
+   "Broached Hexagon Socket Button Head Cap Screw ANSI B18.3.4M - M3 x 0.5 x 8 Steel Grade 2 Plain"
+  ],
+  "parts": [
+   {
+    "part": "SpeedyBee F405 Mini stack 20x20",
+    "files": [
+     {
+      "file": "scout__SpeedyBee_F405_Mini_stack_20x20__black_0.stl",
+      "colour": "black"
+     },
+     {
+      "file": "scout__SpeedyBee_F405_Mini_stack_20x20__black_1.stl",
+      "colour": "black"
+     },
+     {
+      "file": "scout__SpeedyBee_F405_Mini_stack_20x20__black_2.stl",
+      "colour": "black"
+     },
+     {
+      "file": "scout__SpeedyBee_F405_Mini_stack_20x20__black_3.stl",
+      "colour": "black"
+     },
+     {
+      "file": "scout__SpeedyBee_F405_Mini_stack_20x20__alu_dark_0.stl",
+      "colour": "alu_dark"
+     },
+     {
+      "file": "scout__SpeedyBee_F405_Mini_stack_20x20__silver_0.stl",
+      "colour": "silver"
+     },
+     {
+      "file": "scout__SpeedyBee_F405_Mini_stack_20x20__silver_1.stl",
+      "colour": "silver"
+     },
+     {
+      "file": "scout__SpeedyBee_F405_Mini_stack_20x20__rubber_0.stl",
+      "colour": "rubber"
+     },
+     {
+      "file": "scout__SpeedyBee_F405_Mini_stack_20x20__gold_0.stl",
+      "colour": "gold"
+     }
+    ],
+    "bbox_cm": [
+     [
+      -1.3519999999999999,
+      0.9467799999999998,
+      -2.252
+     ],
+     [
+      1.3519999999999999,
+      2.252,
+      1.452
+     ]
+    ],
+    "volume_cm3": 3.813319698399619
+   },
+   {
+    "part": "Landing gear (4x CF legs)",
+    "files": [
+     {
+      "file": "scout__Landing_gear__4x_CF_legs__black_0.stl",
+      "colour": "black"
+     },
+     {
+      "file": "scout__Landing_gear__4x_CF_legs__black_1.stl",
+      "colour": "black"
+     },
+     {
+      "file": "scout__Landing_gear__4x_CF_legs__black_2.stl",
+      "colour": "black"
+     },
+     {
+      "file": "scout__Landing_gear__4x_CF_legs__black_3.stl",
+      "colour": "black"
+     },
+     {
+      "file": "scout__Landing_gear__4x_CF_legs__carbon_0.stl",
+      "colour": "carbon"
+     },
+     {
+      "file": "scout__Landing_gear__4x_CF_legs__carbon_1.stl",
+      "colour": "carbon"
+     },
+     {
+      "file": "scout__Landing_gear__4x_CF_legs__carbon_2.stl",
+      "colour": "carbon"
+     },
+     {
+      "file": "scout__Landing_gear__4x_CF_legs__carbon_3.stl",
+      "colour": "carbon"
+     },
+     {
+      "file": "scout__Landing_gear__4x_CF_legs__orange_0.stl",
+      "colour": "orange"
+     },
+     {
+      "file": "scout__Landing_gear__4x_CF_legs__orange_1.stl",
+      "colour": "orange"
+     },
+     {
+      "file": "scout__Landing_gear__4x_CF_legs__orange_2.stl",
+      "colour": "orange"
+     },
+     {
+      "file": "scout__Landing_gear__4x_CF_legs__orange_3.stl",
+      "colour": "orange"
+     }
+    ],
+    "bbox_cm": [
+     [
+      -6.3020000000000005,
+      -6.652,
+      -6.685982558139535
+     ],
+     [
+      6.3020000000000005,
+      0.10001999999999978,
+      6.685982558139535
+     ]
+    ],
+    "volume_cm3": 12.060170547568626
+   },
+   {
+    "part": "Top adapter plate",
+    "files": [
+     {
+      "file": "scout__Top_adapter_plate__silver_0.stl",
+      "colour": "silver"
+     },
+     {
+      "file": "scout__Top_adapter_plate__carbon_0.stl",
+      "colour": "carbon"
+     }
+    ],
+    "bbox_cm": [
+     [
+      -4.202000000000001,
+      2.999,
+      -4.452000000000001
+     ],
+     [
+      4.202000000000001,
+      4.452,
+      3.002
+     ]
+    ],
+    "volume_cm3": 13.12429692148677
+   },
+   {
+    "part": "NVIDIA Jetson Nano 4GB + carrier",
+    "files": [
+     {
+      "file": "scout__NVIDIA_Jetson_Nano_4GB___carrier__silver_0.stl",
+      "colour": "silver"
+     },
+     {
+      "file": "scout__NVIDIA_Jetson_Nano_4GB___carrier__silver_1.stl",
+      "colour": "silver"
+     },
+     {
+      "file": "scout__NVIDIA_Jetson_Nano_4GB___carrier__pcb_0.stl",
+      "colour": "pcb"
+     },
+     {
+      "file": "scout__NVIDIA_Jetson_Nano_4GB___carrier__pcb_1.stl",
+      "colour": "pcb"
+     },
+     {
+      "file": "scout__NVIDIA_Jetson_Nano_4GB___carrier__black_0.stl",
+      "colour": "black"
+     },
+     {
+      "file": "scout__NVIDIA_Jetson_Nano_4GB___carrier__black_1.stl",
+      "colour": "black"
+     },
+     {
+      "file": "scout__NVIDIA_Jetson_Nano_4GB___carrier__alu_dark_0.stl",
+      "colour": "alu_dark"
+     },
+     {
+      "file": "scout__NVIDIA_Jetson_Nano_4GB___carrier__white_0.stl",
+      "colour": "white"
+     }
+    ],
+    "bbox_cm": [
+     [
+      -4.202000000000001,
+      4.449,
+      -3.1020000000000003
+     ],
+     [
+      4.202000000000001,
+      6.852,
+      1.5519999999999996
+     ]
+    ],
+    "volume_cm3": 25.467561929829788
+   },
+   {
+    "part": "Sensor head: IMX219 RGB + Lepton 3.5 thermal",
+    "files": [
+     {
+      "file": "scout__Sensor_head__IMX219_RGB___Lepton_3_5_thermal__carbon_0.stl",
+      "colour": "carbon"
+     },
+     {
+      "file": "scout__Sensor_head__IMX219_RGB___Lepton_3_5_thermal__black_0.stl",
+      "colour": "black"
+     },
+     {
+      "file": "scout__Sensor_head__IMX219_RGB___Lepton_3_5_thermal__black_1.stl",
+      "colour": "black"
+     },
+     {
+      "file": "scout__Sensor_head__IMX219_RGB___Lepton_3_5_thermal__glass_0.stl",
+      "colour": "glass"
+     },
+     {
+      "file": "scout__Sensor_head__IMX219_RGB___Lepton_3_5_thermal__glass_1.stl",
+      "colour": "glass"
+     },
+     {
+      "file": "scout__Sensor_head__IMX219_RGB___Lepton_3_5_thermal__alu_dark_0.stl",
+      "colour": "alu_dark"
+     },
+     {
+      "file": "scout__Sensor_head__IMX219_RGB___Lepton_3_5_thermal__white_0.stl",
+      "colour": "white"
+     }
+    ],
+    "bbox_cm": [
+     [
+      -2.002,
+      3.7111264729641262,
+      1.5990000000000002
+     ],
+     [
+      2.002,
+      6.663246009117361,
+      5.300702663028598
+     ]
+    ],
+    "volume_cm3": 17.301915561459705
+   },
+   {
+    "part": "M10 GNSS + compass on mast",
+    "files": [
+     {
+      "file": "scout__M10_GNSS___compass_on_mast__black_0.stl",
+      "colour": "black"
+     },
+     {
+      "file": "scout__M10_GNSS___compass_on_mast__black_1.stl",
+      "colour": "black"
+     },
+     {
+      "file": "scout__M10_GNSS___compass_on_mast__carbon_0.stl",
+      "colour": "carbon"
+     },
+     {
+      "file": "scout__M10_GNSS___compass_on_mast__white_0.stl",
+      "colour": "white"
+     },
+     {
+      "file": "scout__M10_GNSS___compass_on_mast__orange_0.stl",
+      "colour": "orange"
+     }
+    ],
+    "bbox_cm": [
+     [
+      -1.9019999999999997,
+      4.448999999999999,
+      -5.652000000000001
+     ],
+     [
+      1.9019999999999997,
+      12.131999999999998,
+      -1.8480000000000003
+     ]
+    ],
+    "volume_cm3": 14.753178775208307
+   }
+  ],
+  "interference": [
+   [
+    "Top adapter plate/Body1",
+    "m3x25 standoff/Body1",
+    1.4
+   ],
+   [
+    "Top adapter plate/Body1",
+    "m3x25 standoff/Body1",
+    1.3
+   ],
+   [
+    "Top adapter plate/Body1",
+    "m3x25 standoff/Body1",
+    1.4
+   ],
+   [
+    "Top adapter plate/Body1",
+    "m3x25 standoff/Body1",
+    1.4
+   ],
+   [
+    "inesh bottom plate finals 260826/Body9",
+    "Battery pad/Body1",
+    26.7
+   ],
+   [
+    "m3 press nut/Body1",
+    "Broached Hexagon Socket Flat Countersunk Head Cap Screw ANSI B18.3.5M - M3x16 Steel Grade 2 Plain/Body1",
+    4.1
+   ],
+   [
+    "m3 press nut/Body1",
+    "Broached Hexagon Socket Flat Countersunk Head Cap Screw ANSI B18.3.5M - M3x16 Steel Grade 2 Plain/Body1",
+    4.1
+   ],
+   [
+    "m3 press nut/Body1",
+    "Broached Hexagon Socket Flat Countersunk Head Cap Screw ANSI B18.3.5M - M3x16 Steel Grade 2 Plain/Body1",
+    4.1
+   ],
+   [
+    "m3 press nut/Body1",
+    "Broached Hexagon Socket Flat Countersunk Head Cap Screw ANSI B18.3.5M - M3x16 Steel Grade 2 Plain/Body1",
+    4.1
+   ],
+   [
+    "m3x25 standoff/Body1",
+    "Broached Hexagon Socket Flat Countersunk Head Cap Screw ANSI B18.3.5M - M3x16 Steel Grade 2 Plain/Body1",
+    8.8
+   ],
+   [
+    "m3x25 standoff/Body1",
+    "Broached Hexagon Socket Flat Countersunk Head Cap Screw ANSI B18.3.5M - M3x16 Steel Grade 2 Plain/Body1",
+    8.8
+   ],
+   [
+    "m3x25 standoff/Body1",
+    "Broached Hexagon Socket Flat Countersunk Head Cap Screw ANSI B18.3.5M - M3x16 Steel Grade 2 Plain/Body1",
+    8.8
+   ],
+   [
+    "m3x25 standoff/Body1",
+    "Broached Hexagon Socket Flat Countersunk Head Cap Screw ANSI B18.3.5M - M3x16 Steel Grade 2 Plain/Body1",
+    8.8
+   ]
+  ],
+  "loose": [
+   {
+    "component": "racerstarBR2205Cap_Simplified",
+    "body": "Body1",
+    "gap_mm": 0.1,
+    "to": "racerstarBR2205Rotor_Simplified"
+   },
+   {
+    "component": "racerstarBR2205Cap_Simplified",
+    "body": "Body1",
+    "gap_mm": 0.1,
+    "to": "racerstarBR2205Rotor_Simplified"
+   },
+   {
+    "component": "P1",
+    "body": "P1",
+    "gap_mm": 0.02,
+    "to": "racerstarBR2205Rotor_Simplified"
+   },
+   {
+    "component": "racerstarBR2205Cap_Simplified",
+    "body": "Body1",
+    "gap_mm": 0.1,
+    "to": "racerstarBR2205Rotor_Simplified"
+   },
+   {
+    "component": "P3",
+    "body": "P3",
+    "gap_mm": 0.02,
+    "to": "racerstarBR2205Rotor_Simplified"
+   },
+   {
+    "component": "racerstarBR2205Cap_Simplified",
+    "body": "Body1",
+    "gap_mm": 0.1,
+    "to": "racerstarBR2205Rotor_Simplified"
+   }
+  ]
+ },
+ "mapper": {
+  "hide": [
+   "Broached Hexagon Socket Flat Countersunk Head Cap Screw ANSI B18.3.5M - M3x16 Steel Grade 2 Plain",
+   "Broached Hexagon Socket Flat Countersunk Head Cap Screw ANSI B18.3.5M - M3x16 Steel Grade 2 Plain",
+   "Broached Hexagon Socket Flat Countersunk Head Cap Screw ANSI B18.3.5M - M3x16 Steel Grade 2 Plain",
+   "Broached Hexagon Socket Flat Countersunk Head Cap Screw ANSI B18.3.5M - M3x16 Steel Grade 2 Plain",
+   "4s lipo",
+   "Battery pad",
+   "Battery strap 16mm"
+  ],
+  "parts": [
+   {
+    "part": "SpeedyBee F405 Mini stack 20x20",
+    "files": [
+     {
+      "file": "mapper__SpeedyBee_F405_Mini_stack_20x20__black_0.stl",
+      "colour": "black"
+     },
+     {
+      "file": "mapper__SpeedyBee_F405_Mini_stack_20x20__black_1.stl",
+      "colour": "black"
+     },
+     {
+      "file": "mapper__SpeedyBee_F405_Mini_stack_20x20__black_2.stl",
+      "colour": "black"
+     },
+     {
+      "file": "mapper__SpeedyBee_F405_Mini_stack_20x20__black_3.stl",
+      "colour": "black"
+     },
+     {
+      "file": "mapper__SpeedyBee_F405_Mini_stack_20x20__alu_dark_0.stl",
+      "colour": "alu_dark"
+     },
+     {
+      "file": "mapper__SpeedyBee_F405_Mini_stack_20x20__silver_0.stl",
+      "colour": "silver"
+     },
+     {
+      "file": "mapper__SpeedyBee_F405_Mini_stack_20x20__silver_1.stl",
+      "colour": "silver"
+     },
+     {
+      "file": "mapper__SpeedyBee_F405_Mini_stack_20x20__rubber_0.stl",
+      "colour": "rubber"
+     },
+     {
+      "file": "mapper__SpeedyBee_F405_Mini_stack_20x20__gold_0.stl",
+      "colour": "gold"
+     }
+    ],
+    "bbox_cm": [
+     [
+      -1.3519999999999999,
+      0.9467799999999998,
+      -2.252
+     ],
+     [
+      1.3519999999999999,
+      2.252,
+      1.452
+     ]
+    ],
+    "volume_cm3": 3.813319698399619
+   },
+   {
+    "part": "Landing gear (4x CF legs, tall)",
+    "files": [
+     {
+      "file": "mapper__Landing_gear__4x_CF_legs__tall__black_0.stl",
+      "colour": "black"
+     },
+     {
+      "file": "mapper__Landing_gear__4x_CF_legs__tall__black_1.stl",
+      "colour": "black"
+     },
+     {
+      "file": "mapper__Landing_gear__4x_CF_legs__tall__black_2.stl",
+      "colour": "black"
+     },
+     {
+      "file": "mapper__Landing_gear__4x_CF_legs__tall__black_3.stl",
+      "colour": "black"
+     },
+     {
+      "file": "mapper__Landing_gear__4x_CF_legs__tall__carbon_0.stl",
+      "colour": "carbon"
+     },
+     {
+      "file": "mapper__Landing_gear__4x_CF_legs__tall__carbon_1.stl",
+      "colour": "carbon"
+     },
+     {
+      "file": "mapper__Landing_gear__4x_CF_legs__tall__carbon_2.stl",
+      "colour": "carbon"
+     },
+     {
+      "file": "mapper__Landing_gear__4x_CF_legs__tall__carbon_3.stl",
+      "colour": "carbon"
+     },
+     {
+      "file": "mapper__Landing_gear__4x_CF_legs__tall__orange_0.stl",
+      "colour": "orange"
+     },
+     {
+      "file": "mapper__Landing_gear__4x_CF_legs__tall__orange_1.stl",
+      "colour": "orange"
+     },
+     {
+      "file": "mapper__Landing_gear__4x_CF_legs__tall__orange_2.stl",
+      "colour": "orange"
+     },
+     {
+      "file": "mapper__Landing_gear__4x_CF_legs__tall__orange_3.stl",
+      "colour": "orange"
+     }
+    ],
+    "bbox_cm": [
+     [
+      -6.3020000000000005,
+      -12.052,
+      -6.685982558139535
+     ],
+     [
+      6.3020000000000005,
+      0.10002000000000066,
+      6.685982558139535
+     ]
+    ],
+    "volume_cm3": 18.037238294306768
+   },
+   {
+    "part": "4S 1550 mAh LiPo (top mount)",
+    "files": [
+     {
+      "file": "mapper__4S_1550_mAh_LiPo__top_mount__rubber_0.stl",
+      "colour": "rubber"
+     },
+     {
+      "file": "mapper__4S_1550_mAh_LiPo__top_mount__lipo_0.stl",
+      "colour": "lipo"
+     },
+     {
+      "file": "mapper__4S_1550_mAh_LiPo__top_mount__black_0.stl",
+      "colour": "black"
+     },
+     {
+      "file": "mapper__4S_1550_mAh_LiPo__top_mount__yellow_0.stl",
+      "colour": "yellow"
+     }
+    ],
+    "bbox_cm": [
+     [
+      -1.8519999999999999,
+      3.6467800000000006,
+      -3.0519999999999996
+     ],
+     [
+      1.8519999999999999,
+      7.602,
+      5.102
+     ]
+    ],
+    "volume_cm3": 101.8095731555208
+   },
+   {
+    "part": "Bottom adapter plate",
+    "files": [
+     {
+      "file": "mapper__Bottom_adapter_plate__silver_0.stl",
+      "colour": "silver"
+     },
+     {
+      "file": "mapper__Bottom_adapter_plate__carbon_0.stl",
+      "colour": "carbon"
+     },
+     {
+      "file": "mapper__Bottom_adapter_plate__black_0.stl",
+      "colour": "black"
+     }
+    ],
+    "bbox_cm": [
+     [
+      -4.202000000000001,
+      -0.982,
+      -3.6020000000000003
+     ],
+     [
+      4.202000000000001,
+      1.9519999999999997,
+      3.402
+     ]
+    ],
+    "volume_cm3": 13.260192436903175
+   },
+   {
+    "part": "NVIDIA Jetson Nano 4GB + carrier (underslung)",
+    "files": [
+     {
+      "file": "mapper__NVIDIA_Jetson_Nano_4GB___carrier__underslung__silver_0.stl",
+      "colour": "silver"
+     },
+     {
+      "file": "mapper__NVIDIA_Jetson_Nano_4GB___carrier__underslung__silver_1.stl",
+      "colour": "silver"
+     },
+     {
+      "file": "mapper__NVIDIA_Jetson_Nano_4GB___carrier__underslung__pcb_0.stl",
+      "colour": "pcb"
+     },
+     {
+      "file": "mapper__NVIDIA_Jetson_Nano_4GB___carrier__underslung__pcb_1.stl",
+      "colour": "pcb"
+     },
+     {
+      "file": "mapper__NVIDIA_Jetson_Nano_4GB___carrier__underslung__black_0.stl",
+      "colour": "black"
+     },
+     {
+      "file": "mapper__NVIDIA_Jetson_Nano_4GB___carrier__underslung__black_1.stl",
+      "colour": "black"
+     },
+     {
+      "file": "mapper__NVIDIA_Jetson_Nano_4GB___carrier__underslung__alu_dark_0.stl",
+      "colour": "alu_dark"
+     },
+     {
+      "file": "mapper__NVIDIA_Jetson_Nano_4GB___carrier__underslung__white_0.stl",
+      "colour": "white"
+     }
+    ],
+    "bbox_cm": [
+     [
+      -4.202000000000001,
+      -3.1019999999999994,
+      -2.6020000000000003
+     ],
+     [
+      4.202000000000001,
+      -0.6989999999999998,
+      2.0519999999999996
+     ]
+    ],
+    "volume_cm3": 25.467561929829767
+   },
+   {
+    "part": "Livox Mid-360 3D lidar (inverted, under frame)",
+    "files": [
+     {
+      "file": "mapper__Livox_Mid_360_3D_lidar__inverted__under_frame__silver_0.stl",
+      "colour": "silver"
+     },
+     {
+      "file": "mapper__Livox_Mid_360_3D_lidar__inverted__under_frame__carbon_0.stl",
+      "colour": "carbon"
+     },
+     {
+      "file": "mapper__Livox_Mid_360_3D_lidar__inverted__under_frame__alu_0.stl",
+      "colour": "alu"
+     },
+     {
+      "file": "mapper__Livox_Mid_360_3D_lidar__inverted__under_frame__alu_1.stl",
+      "colour": "alu"
+     },
+     {
+      "file": "mapper__Livox_Mid_360_3D_lidar__inverted__under_frame__window_0.stl",
+      "colour": "window"
+     },
+     {
+      "file": "mapper__Livox_Mid_360_3D_lidar__inverted__under_frame__black_0.stl",
+      "colour": "black"
+     }
+    ],
+    "bbox_cm": [
+     [
+      -3.8019999999999996,
+      -11.151999999999997,
+      -3.8019999999999996
+     ],
+     [
+      3.8019999999999996,
+      -0.6989999999999998,
+      4.802000000000003
+     ]
+    ],
+    "volume_cm3": 219.80674974025854
+   },
+   {
+    "part": "M10 GNSS + compass on mast",
+    "files": [
+     {
+      "file": "mapper__M10_GNSS___compass_on_mast__carbon_0.stl",
+      "colour": "carbon"
+     },
+     {
+      "file": "mapper__M10_GNSS___compass_on_mast__carbon_1.stl",
+      "colour": "carbon"
+     },
+     {
+      "file": "mapper__M10_GNSS___compass_on_mast__black_0.stl",
+      "colour": "black"
+     },
+     {
+      "file": "mapper__M10_GNSS___compass_on_mast__black_1.stl",
+      "colour": "black"
+     },
+     {
+      "file": "mapper__M10_GNSS___compass_on_mast__white_0.stl",
+      "colour": "white"
+     },
+     {
+      "file": "mapper__M10_GNSS___compass_on_mast__orange_0.stl",
+      "colour": "orange"
+     }
+    ],
+    "bbox_cm": [
+     [
+      -1.9019999999999997,
+      3.64778,
+      -5.502000000000001
+     ],
+     [
+      1.9019999999999997,
+      11.531999999999996,
+      -1.6980000000000004
+     ]
+    ],
+    "volume_cm3": 15.294661795208317
+   }
+  ],
+  "interference": [
+   [
+    "Bottom adapter plate/Body3",
+    "m3 press nut/Body1",
+    2.7
+   ],
+   [
+    "Bottom adapter plate/Body3",
+    "m3 press nut/Body1",
+    2.7
+   ],
+   [
+    "Bottom adapter plate/Body3",
+    "m3 press nut/Body1",
+    2.7
+   ],
+   [
+    "Bottom adapter plate/Body3",
+    "m3 press nut/Body1",
+    2.7
+   ],
+   [
+    "Bottom adapter plate/Body3",
+    "m3x25 standoff/Body1",
+    10.9
+   ],
+   [
+    "Bottom adapter plate/Body3",
+    "m3x25 standoff/Body1",
+    10.9
+   ],
+   [
+    "Bottom adapter plate/Body3",
+    "m3x25 standoff/Body1",
+    10.9
+   ],
+   [
+    "Bottom adapter plate/Body3",
+    "m3x25 standoff/Body1",
+    10.9
+   ],
+   [
+    "m3x25 standoff/Body1",
+    "Broached Hexagon Socket Button Head Cap Screw ANSI B18.3.4M - M3 x 0.5 x 8 Steel Grade 2 Plain/Body1",
+    10.0
+   ],
+   [
+    "m3x25 standoff/Body1",
+    "Broached Hexagon Socket Button Head Cap Screw ANSI B18.3.4M - M3 x 0.5 x 8 Steel Grade 2 Plain/Body1",
+    9.9
+   ],
+   [
+    "m3x25 standoff/Body1",
+    "Broached Hexagon Socket Button Head Cap Screw ANSI B18.3.4M - M3 x 0.5 x 8 Steel Grade 2 Plain/Body1",
+    9.9
+   ],
+   [
+    "m3x25 standoff/Body1",
+    "Broached Hexagon Socket Button Head Cap Screw ANSI B18.3.4M - M3 x 0.5 x 8 Steel Grade 2 Plain/Body1",
+    10.0
+   ]
+  ],
+  "loose": [
+   {
+    "component": "racerstarBR2205Cap_Simplified",
+    "body": "Body1",
+    "gap_mm": 0.1,
+    "to": "racerstarBR2205Rotor_Simplified"
+   },
+   {
+    "component": "racerstarBR2205Cap_Simplified",
+    "body": "Body1",
+    "gap_mm": 0.1,
+    "to": "racerstarBR2205Rotor_Simplified"
+   },
+   {
+    "component": "P1",
+    "body": "P1",
+    "gap_mm": 0.02,
+    "to": "racerstarBR2205Rotor_Simplified"
+   },
+   {
+    "component": "racerstarBR2205Cap_Simplified",
+    "body": "Body1",
+    "gap_mm": 0.1,
+    "to": "racerstarBR2205Rotor_Simplified"
+   },
+   {
+    "component": "P3",
+    "body": "P3",
+    "gap_mm": 0.02,
+    "to": "racerstarBR2205Rotor_Simplified"
+   },
+   {
+    "component": "racerstarBR2205Cap_Simplified",
+    "body": "Body1",
+    "gap_mm": 0.1,
+    "to": "racerstarBR2205Rotor_Simplified"
+   }
+  ]
+ },
+ "relay": {
+  "hide": [
+   "Broached Hexagon Socket Button Head Cap Screw ANSI B18.3.4M - M3 x 0.5 x 8 Steel Grade 2 Plain",
+   "Broached Hexagon Socket Button Head Cap Screw ANSI B18.3.4M - M3 x 0.5 x 8 Steel Grade 2 Plain",
+   "Broached Hexagon Socket Button Head Cap Screw ANSI B18.3.4M - M3 x 0.5 x 8 Steel Grade 2 Plain",
+   "Broached Hexagon Socket Button Head Cap Screw ANSI B18.3.4M - M3 x 0.5 x 8 Steel Grade 2 Plain"
+  ],
+  "parts": [
+   {
+    "part": "SpeedyBee F405 Mini stack 20x20",
+    "files": [
+     {
+      "file": "relay__SpeedyBee_F405_Mini_stack_20x20__black_0.stl",
+      "colour": "black"
+     },
+     {
+      "file": "relay__SpeedyBee_F405_Mini_stack_20x20__black_1.stl",
+      "colour": "black"
+     },
+     {
+      "file": "relay__SpeedyBee_F405_Mini_stack_20x20__black_2.stl",
+      "colour": "black"
+     },
+     {
+      "file": "relay__SpeedyBee_F405_Mini_stack_20x20__black_3.stl",
+      "colour": "black"
+     },
+     {
+      "file": "relay__SpeedyBee_F405_Mini_stack_20x20__alu_dark_0.stl",
+      "colour": "alu_dark"
+     },
+     {
+      "file": "relay__SpeedyBee_F405_Mini_stack_20x20__silver_0.stl",
+      "colour": "silver"
+     },
+     {
+      "file": "relay__SpeedyBee_F405_Mini_stack_20x20__silver_1.stl",
+      "colour": "silver"
+     },
+     {
+      "file": "relay__SpeedyBee_F405_Mini_stack_20x20__rubber_0.stl",
+      "colour": "rubber"
+     },
+     {
+      "file": "relay__SpeedyBee_F405_Mini_stack_20x20__gold_0.stl",
+      "colour": "gold"
+     }
+    ],
+    "bbox_cm": [
+     [
+      -1.3519999999999999,
+      0.9467799999999998,
+      -2.252
+     ],
+     [
+      1.3519999999999999,
+      2.252,
+      1.452
+     ]
+    ],
+    "volume_cm3": 3.813319698399619
+   },
+   {
+    "part": "Landing gear (4x CF legs)",
+    "files": [
+     {
+      "file": "relay__Landing_gear__4x_CF_legs__black_0.stl",
+      "colour": "black"
+     },
+     {
+      "file": "relay__Landing_gear__4x_CF_legs__black_1.stl",
+      "colour": "black"
+     },
+     {
+      "file": "relay__Landing_gear__4x_CF_legs__black_2.stl",
+      "colour": "black"
+     },
+     {
+      "file": "relay__Landing_gear__4x_CF_legs__black_3.stl",
+      "colour": "black"
+     },
+     {
+      "file": "relay__Landing_gear__4x_CF_legs__carbon_0.stl",
+      "colour": "carbon"
+     },
+     {
+      "file": "relay__Landing_gear__4x_CF_legs__carbon_1.stl",
+      "colour": "carbon"
+     },
+     {
+      "file": "relay__Landing_gear__4x_CF_legs__carbon_2.stl",
+      "colour": "carbon"
+     },
+     {
+      "file": "relay__Landing_gear__4x_CF_legs__carbon_3.stl",
+      "colour": "carbon"
+     },
+     {
+      "file": "relay__Landing_gear__4x_CF_legs__orange_0.stl",
+      "colour": "orange"
+     },
+     {
+      "file": "relay__Landing_gear__4x_CF_legs__orange_1.stl",
+      "colour": "orange"
+     },
+     {
+      "file": "relay__Landing_gear__4x_CF_legs__orange_2.stl",
+      "colour": "orange"
+     },
+     {
+      "file": "relay__Landing_gear__4x_CF_legs__orange_3.stl",
+      "colour": "orange"
+     }
+    ],
+    "bbox_cm": [
+     [
+      -6.3020000000000005,
+      -6.652,
+      -6.685982558139535
+     ],
+     [
+      6.3020000000000005,
+      0.10001999999999978,
+      6.685982558139535
+     ]
+    ],
+    "volume_cm3": 12.060170547568626
+   },
+   {
+    "part": "Top adapter plate",
+    "files": [
+     {
+      "file": "relay__Top_adapter_plate__silver_0.stl",
+      "colour": "silver"
+     },
+     {
+      "file": "relay__Top_adapter_plate__carbon_0.stl",
+      "colour": "carbon"
+     }
+    ],
+    "bbox_cm": [
+     [
+      -4.202000000000001,
+      2.999,
+      -4.452000000000001
+     ],
+     [
+      4.202000000000001,
+      4.452,
+      3.002
+     ]
+    ],
+    "volume_cm3": 13.12429692148677
+   },
+   {
+    "part": "RFD900x long-range modem + 2 dipoles",
+    "files": [
+     {
+      "file": "relay__RFD900x_long_range_modem___2_dipoles__blue_0.stl",
+      "colour": "blue"
+     },
+     {
+      "file": "relay__RFD900x_long_range_modem___2_dipoles__blue_1.stl",
+      "colour": "blue"
+     },
+     {
+      "file": "relay__RFD900x_long_range_modem___2_dipoles__gold_0.stl",
+      "colour": "gold"
+     },
+     {
+      "file": "relay__RFD900x_long_range_modem___2_dipoles__gold_1.stl",
+      "colour": "gold"
+     },
+     {
+      "file": "relay__RFD900x_long_range_modem___2_dipoles__black_0.stl",
+      "colour": "black"
+     },
+     {
+      "file": "relay__RFD900x_long_range_modem___2_dipoles__black_1.stl",
+      "colour": "black"
+     }
+    ],
+    "bbox_cm": [
+     [
+      -1.5019999999999998,
+      4.448999999999999,
+      -2.851
+     ],
+     [
+      1.5019999999999998,
+      20.002000000000002,
+      3.902
+     ]
+    ],
+    "volume_cm3": 33.23740118592165
+   },
+   {
+    "part": "Wi-Fi/LoRa mesh node + 2 dipoles",
+    "files": [
+     {
+      "file": "relay__Wi_Fi_LoRa_mesh_node___2_dipoles__black_0.stl",
+      "colour": "black"
+     },
+     {
+      "file": "relay__Wi_Fi_LoRa_mesh_node___2_dipoles__black_1.stl",
+      "colour": "black"
+     },
+     {
+      "file": "relay__Wi_Fi_LoRa_mesh_node___2_dipoles__black_2.stl",
+      "colour": "black"
+     },
+     {
+      "file": "relay__Wi_Fi_LoRa_mesh_node___2_dipoles__gold_0.stl",
+      "colour": "gold"
+     },
+     {
+      "file": "relay__Wi_Fi_LoRa_mesh_node___2_dipoles__gold_1.stl",
+      "colour": "gold"
+     }
+    ],
+    "bbox_cm": [
+     [
+      -2.0519999999999996,
+      5.949000000000001,
+      -2.601
+     ],
+     [
+      2.0519999999999996,
+      17.002000000000002,
+      2.601
+     ]
+    ],
+    "volume_cm3": 14.740093200294513
+   },
+   {
+    "part": "Raspberry Pi Zero 2 W companion",
+    "files": [
+     {
+      "file": "relay__Raspberry_Pi_Zero_2_W_companion__pcb_0.stl",
+      "colour": "pcb"
+     },
+     {
+      "file": "relay__Raspberry_Pi_Zero_2_W_companion__silver_0.stl",
+      "colour": "silver"
+     },
+     {
+      "file": "relay__Raspberry_Pi_Zero_2_W_companion__silver_1.stl",
+      "colour": "silver"
+     },
+     {
+      "file": "relay__Raspberry_Pi_Zero_2_W_companion__silver_2.stl",
+      "colour": "silver"
+     }
+    ],
+    "bbox_cm": [
+     [
+      -3.252,
+      4.448,
+      -1.001
+     ],
+     [
+      3.2510000000000003,
+      7.202000000000001,
+      2.001
+     ]
+    ],
+    "volume_cm3": 3.775971578978551
+   },
+   {
+    "part": "M10 GNSS + compass on mast",
+    "files": [
+     {
+      "file": "relay__M10_GNSS___compass_on_mast__black_0.stl",
+      "colour": "black"
+     },
+     {
+      "file": "relay__M10_GNSS___compass_on_mast__black_1.stl",
+      "colour": "black"
+     },
+     {
+      "file": "relay__M10_GNSS___compass_on_mast__carbon_0.stl",
+      "colour": "carbon"
+     },
+     {
+      "file": "relay__M10_GNSS___compass_on_mast__white_0.stl",
+      "colour": "white"
+     },
+     {
+      "file": "relay__M10_GNSS___compass_on_mast__orange_0.stl",
+      "colour": "orange"
+     }
+    ],
+    "bbox_cm": [
+     [
+      -1.9019999999999997,
+      4.448999999999999,
+      -5.652000000000001
+     ],
+     [
+      1.9019999999999997,
+      12.131999999999998,
+      -1.8480000000000003
+     ]
+    ],
+    "volume_cm3": 14.753178775208307
+   }
+  ],
+  "interference": [
+   [
+    "Top adapter plate/Body1",
+    "m3x25 standoff/Body1",
+    1.4
+   ],
+   [
+    "Top adapter plate/Body1",
+    "m3x25 standoff/Body1",
+    1.3
+   ],
+   [
+    "Top adapter plate/Body1",
+    "m3x25 standoff/Body1",
+    1.4
+   ],
+   [
+    "Top adapter plate/Body1",
+    "m3x25 standoff/Body1",
+    1.4
+   ],
+   [
+    "inesh bottom plate finals 260826/Body9",
+    "Battery pad/Body1",
+    26.7
+   ],
+   [
+    "m3 press nut/Body1",
+    "Broached Hexagon Socket Flat Countersunk Head Cap Screw ANSI B18.3.5M - M3x16 Steel Grade 2 Plain/Body1",
+    4.1
+   ],
+   [
+    "m3 press nut/Body1",
+    "Broached Hexagon Socket Flat Countersunk Head Cap Screw ANSI B18.3.5M - M3x16 Steel Grade 2 Plain/Body1",
+    4.1
+   ],
+   [
+    "m3 press nut/Body1",
+    "Broached Hexagon Socket Flat Countersunk Head Cap Screw ANSI B18.3.5M - M3x16 Steel Grade 2 Plain/Body1",
+    4.1
+   ],
+   [
+    "m3 press nut/Body1",
+    "Broached Hexagon Socket Flat Countersunk Head Cap Screw ANSI B18.3.5M - M3x16 Steel Grade 2 Plain/Body1",
+    4.1
+   ],
+   [
+    "m3x25 standoff/Body1",
+    "Broached Hexagon Socket Flat Countersunk Head Cap Screw ANSI B18.3.5M - M3x16 Steel Grade 2 Plain/Body1",
+    8.8
+   ],
+   [
+    "m3x25 standoff/Body1",
+    "Broached Hexagon Socket Flat Countersunk Head Cap Screw ANSI B18.3.5M - M3x16 Steel Grade 2 Plain/Body1",
+    8.8
+   ],
+   [
+    "m3x25 standoff/Body1",
+    "Broached Hexagon Socket Flat Countersunk Head Cap Screw ANSI B18.3.5M - M3x16 Steel Grade 2 Plain/Body1",
+    8.8
+   ],
+   [
+    "m3x25 standoff/Body1",
+    "Broached Hexagon Socket Flat Countersunk Head Cap Screw ANSI B18.3.5M - M3x16 Steel Grade 2 Plain/Body1",
+    8.8
+   ]
+  ],
+  "loose": [
+   {
+    "component": "racerstarBR2205Cap_Simplified",
+    "body": "Body1",
+    "gap_mm": 0.1,
+    "to": "racerstarBR2205Rotor_Simplified"
+   },
+   {
+    "component": "racerstarBR2205Cap_Simplified",
+    "body": "Body1",
+    "gap_mm": 0.1,
+    "to": "racerstarBR2205Rotor_Simplified"
+   },
+   {
+    "component": "P1",
+    "body": "P1",
+    "gap_mm": 0.02,
+    "to": "racerstarBR2205Rotor_Simplified"
+   },
+   {
+    "component": "racerstarBR2205Cap_Simplified",
+    "body": "Body1",
+    "gap_mm": 0.1,
+    "to": "racerstarBR2205Rotor_Simplified"
+   },
+   {
+    "component": "P3",
+    "body": "P3",
+    "gap_mm": 0.02,
+    "to": "racerstarBR2205Rotor_Simplified"
+   },
+   {
+    "component": "racerstarBR2205Cap_Simplified",
+    "body": "Body1",
+    "gap_mm": 0.1,
+    "to": "racerstarBR2205Rotor_Simplified"
+   }
+  ]
+ }
+}

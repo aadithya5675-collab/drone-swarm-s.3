@@ -1,0 +1,21 @@
+# ResQMesh story fleet at the Chooralmala rescue camp (world resqmesh_wayanad, origin = camp).
+# Pads are camp coordinates (x east, y north, metres). reserve: true = waits on its pad, PX4 off, until called.
+drones:
+  - {name: scout_1,  role: scout,  model: resqmesh_scout,  px4_instance: 1, pad: [-21.0, -14.0]}
+  - {name: scout_2,  role: scout,  model: resqmesh_scout,  px4_instance: 2, pad: [-14.0, -14.0]}
+  - {name: scout_3,  role: scout,  model: resqmesh_scout,  px4_instance: 3, pad: [ -7.0, -14.0], reserve: true}
+  - {name: scout_4,  role: scout,  model: resqmesh_scout,  px4_instance: 4, pad: [  0.0, -14.0], reserve: true}
+  - {name: mapper_1, role: mapper, model: resqmesh_mapper, px4_instance: 5, pad: [  7.0, -14.0]}
+  - {name: mapper_2, role: mapper, model: resqmesh_mapper, px4_instance: 6, pad: [ 14.0, -14.0]}
+  - {name: relay_1,  role: relay,  model: resqmesh_relay,  px4_instance: 7, pad: [ 21.0, -14.0]}
+
+mission:
+  scout_agl_m: 18            # above the lidar-mapped surface (debris, trees, roofs)
+  mapper_agl_m: 45           # above the surface (pre-disaster DEM + forest margin until mapped)
+  relay_agl_m: 95
+  hold_agl_m: 40             # Scouts wait this high over a sector until it is mapped
+  release_coverage: 0.45     # fraction of a sector the lidar map must cover before Scouts fly it
+  cruise_speed_mps: 12.0
+  heartbeat_timeout_s: 12.0   # silent this long on the mesh = lost (routes can flap for a few seconds)
+  thermal_body_k: 297.8      # thermal pixels hotter than this are a body (night air ~296 K)
+  thermal_alive_k: 303.0     # a body this warm has a live heat signature; cooler = likely deceased

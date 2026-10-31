@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# ROS 2 / colcon (built in WSL by sim/setup/03_build.sh)
+sim/ros2_ws/build/
+sim/ros2_ws/install/
+sim/ros2_ws/log/
+sim/ros2_ws/src/px4_msgs
+
+# Node (dashboard sources live in sim/dashboard/app; the built site is committed)
+node_modules/
+*.tsbuildinfo
+
+# generated at run time
+sim/config/gui_story.config
+
+# editors / OS
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+Desktop.ini
+.DS_Store

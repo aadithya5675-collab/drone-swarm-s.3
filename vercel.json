@@ -1,0 +1,12 @@
+{
+  "framework": null,
+  "buildCommand": "",
+  "installCommand": "",
+  "outputDirectory": "sim/dashboard",
+  "cleanUrls": false,
+  "rewrites": [{ "source": "/", "destination": "/story.html" }],
+  "headers": [
+    { "source": "/replays/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600" }] },
+    { "source": "/videos/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600" }] }
+  ]
+}

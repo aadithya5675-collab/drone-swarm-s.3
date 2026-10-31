@@ -1,0 +1,727 @@
+{
+ "frame": "gazebo FLU, metres, origin = centre of motor axes at motor mounting face",
+ "origin_in_gazebo_axes_before_shift_m": [
+  0.00094,
+  -4e-05,
+  0.006
+ ],
+ "roles": {
+  "scout": {
+   "hide": [
+    "Broached Hexagon Socket Button Head Cap Screw ANSI B18.3.4M - M3 x 0.5 x 8 Steel Grade 2 Plain",
+    "Broached Hexagon Socket Button Head Cap Screw ANSI B18.3.4M - M3 x 0.5 x 8 Steel Grade 2 Plain",
+    "Broached Hexagon Socket Button Head Cap Screw ANSI B18.3.4M - M3 x 0.5 x 8 Steel Grade 2 Plain",
+    "Broached Hexagon Socket Button Head Cap Screw ANSI B18.3.4M - M3 x 0.5 x 8 Steel Grade 2 Plain"
+   ],
+   "parts": [
+    {
+     "part": "SpeedyBee F405 Mini stack 20x20",
+     "files": [
+      {
+       "mesh": "scout__SpeedyBee_F405_Mini_stack_20x20__black.stl",
+       "colour": "black"
+      },
+      {
+       "mesh": "scout__SpeedyBee_F405_Mini_stack_20x20__alu_dark.stl",
+       "colour": "alu_dark"
+      },
+      {
+       "mesh": "scout__SpeedyBee_F405_Mini_stack_20x20__silver.stl",
+       "colour": "silver"
+      },
+      {
+       "mesh": "scout__SpeedyBee_F405_Mini_stack_20x20__rubber.stl",
+       "colour": "rubber"
+      },
+      {
+       "mesh": "scout__SpeedyBee_F405_Mini_stack_20x20__gold.stl",
+       "colour": "gold"
+      }
+     ],
+     "bbox_m": [
+      [
+       -0.0234,
+       -0.0135,
+       0.0035
+      ],
+      [
+       0.0136,
+       0.0135,
+       0.0165
+      ]
+     ]
+    },
+    {
+     "part": "Landing gear (4x CF legs)",
+     "files": [
+      {
+       "mesh": "scout__Landing_gear__black.stl",
+       "colour": "black"
+      },
+      {
+       "mesh": "scout__Landing_gear__carbon.stl",
+       "colour": "carbon"
+      },
+      {
+       "mesh": "scout__Landing_gear__orange.stl",
+       "colour": "orange"
+      }
+     ],
+     "bbox_m": [
+      [
+       -0.0678,
+       -0.063,
+       -0.0725
+      ],
+      [
+       0.0659,
+       0.063,
+       -0.005
+      ]
+     ]
+    },
+    {
+     "part": "Top adapter plate",
+     "files": [
+      {
+       "mesh": "scout__Top_adapter_plate__silver.stl",
+       "colour": "silver"
+      },
+      {
+       "mesh": "scout__Top_adapter_plate__carbon.stl",
+       "colour": "carbon"
+      }
+     ],
+     "bbox_m": [
+      [
+       -0.0454,
+       -0.0419,
+       0.024
+      ],
+      [
+       0.029,
+       0.042,
+       0.0385
+      ]
+     ]
+    },
+    {
+     "part": "NVIDIA Jetson Nano 4GB + carrier",
+     "files": [
+      {
+       "mesh": "scout__NVIDIA_Jetson_Nano_4GB__silver.stl",
+       "colour": "silver"
+      },
+      {
+       "mesh": "scout__NVIDIA_Jetson_Nano_4GB__pcb.stl",
+       "colour": "pcb"
+      },
+      {
+       "mesh": "scout__NVIDIA_Jetson_Nano_4GB__black.stl",
+       "colour": "black"
+      },
+      {
+       "mesh": "scout__NVIDIA_Jetson_Nano_4GB__alu_dark.stl",
+       "colour": "alu_dark"
+      },
+      {
+       "mesh": "scout__NVIDIA_Jetson_Nano_4GB__white.stl",
+       "colour": "white"
+      }
+     ],
+     "bbox_m": [
+      [
+       -0.0319,
+       -0.042,
+       0.0385
+      ],
+      [
+       0.0146,
+       0.042,
+       0.0625
+      ]
+     ]
+    },
+    {
+     "part": "Sensor head: IMX219 RGB + Lepton 3.5 thermal",
+     "files": [
+      {
+       "mesh": "scout__Sensor_head__carbon.stl",
+       "colour": "carbon"
+      },
+      {
+       "mesh": "scout__Sensor_head__black.stl",
+       "colour": "black"
+      },
+      {
+       "mesh": "scout__Sensor_head__glass.stl",
+       "colour": "glass"
+      },
+      {
+       "mesh": "scout__Sensor_head__alu_dark.stl",
+       "colour": "alu_dark"
+      },
+      {
+       "mesh": "scout__Sensor_head__white.stl",
+       "colour": "white"
+      }
+     ],
+     "bbox_m": [
+      [
+       0.0151,
+       -0.02,
+       0.0311
+      ],
+      [
+       0.052,
+       0.02,
+       0.0606
+      ]
+     ]
+    },
+    {
+     "part": "M10 GNSS + compass on mast",
+     "files": [
+      {
+       "mesh": "scout__M10_GNSS__black.stl",
+       "colour": "black"
+      },
+      {
+       "mesh": "scout__M10_GNSS__carbon.stl",
+       "colour": "carbon"
+      },
+      {
+       "mesh": "scout__M10_GNSS__white.stl",
+       "colour": "white"
+      },
+      {
+       "mesh": "scout__M10_GNSS__orange.stl",
+       "colour": "orange"
+      }
+     ],
+     "bbox_m": [
+      [
+       -0.0574,
+       -0.019,
+       0.0385
+      ],
+      [
+       -0.0194,
+       0.019,
+       0.1153
+      ]
+     ]
+    }
+   ]
+  },
+  "mapper": {
+   "hide": [
+    "Broached Hexagon Socket Flat Countersunk Head Cap Screw ANSI B18.3.5M - M3x16 Steel Grade 2 Plain",
+    "Broached Hexagon Socket Flat Countersunk Head Cap Screw ANSI B18.3.5M - M3x16 Steel Grade 2 Plain",
+    "Broached Hexagon Socket Flat Countersunk Head Cap Screw ANSI B18.3.5M - M3x16 Steel Grade 2 Plain",
+    "Broached Hexagon Socket Flat Countersunk Head Cap Screw ANSI B18.3.5M - M3x16 Steel Grade 2 Plain",
+    "4s lipo",
+    "Battery pad",
+    "Battery strap 16mm"
+   ],
+   "parts": [
+    {
+     "part": "SpeedyBee F405 Mini stack 20x20",
+     "files": [
+      {
+       "mesh": "mapper__SpeedyBee_F405_Mini_stack_20x20__black.stl",
+       "colour": "black"
+      },
+      {
+       "mesh": "mapper__SpeedyBee_F405_Mini_stack_20x20__alu_dark.stl",
+       "colour": "alu_dark"
+      },
+      {
+       "mesh": "mapper__SpeedyBee_F405_Mini_stack_20x20__silver.stl",
+       "colour": "silver"
+      },
+      {
+       "mesh": "mapper__SpeedyBee_F405_Mini_stack_20x20__rubber.stl",
+       "colour": "rubber"
+      },
+      {
+       "mesh": "mapper__SpeedyBee_F405_Mini_stack_20x20__gold.stl",
+       "colour": "gold"
+      }
+     ],
+     "bbox_m": [
+      [
+       -0.0234,
+       -0.0135,
+       0.0035
+      ],
+      [
+       0.0136,
+       0.0135,
+       0.0165
+      ]
+     ]
+    },
+    {
+     "part": "Landing gear (4x CF legs, tall)",
+     "files": [
+      {
+       "mesh": "mapper__Landing_gear__black.stl",
+       "colour": "black"
+      },
+      {
+       "mesh": "mapper__Landing_gear__carbon.stl",
+       "colour": "carbon"
+      },
+      {
+       "mesh": "mapper__Landing_gear__orange.stl",
+       "colour": "orange"
+      }
+     ],
+     "bbox_m": [
+      [
+       -0.0678,
+       -0.063,
+       -0.1265
+      ],
+      [
+       0.0659,
+       0.063,
+       -0.005
+      ]
+     ]
+    },
+    {
+     "part": "4S 1550 mAh LiPo (top mount)",
+     "files": [
+      {
+       "mesh": "mapper__4S_1550_mAh_LiPo__rubber.stl",
+       "colour": "rubber"
+      },
+      {
+       "mesh": "mapper__4S_1550_mAh_LiPo__lipo.stl",
+       "colour": "lipo"
+      },
+      {
+       "mesh": "mapper__4S_1550_mAh_LiPo__black.stl",
+       "colour": "black"
+      },
+      {
+       "mesh": "mapper__4S_1550_mAh_LiPo__yellow.stl",
+       "colour": "yellow"
+      }
+     ],
+     "bbox_m": [
+      [
+       -0.0314,
+       -0.0185,
+       0.0305
+      ],
+      [
+       0.0501,
+       0.0185,
+       0.07
+      ]
+     ]
+    },
+    {
+     "part": "Bottom adapter plate",
+     "files": [
+      {
+       "mesh": "mapper__Bottom_adapter_plate__silver.stl",
+       "colour": "silver"
+      },
+      {
+       "mesh": "mapper__Bottom_adapter_plate__carbon.stl",
+       "colour": "carbon"
+      },
+      {
+       "mesh": "mapper__Bottom_adapter_plate__black.stl",
+       "colour": "black"
+      }
+     ],
+     "bbox_m": [
+      [
+       -0.0369,
+       -0.042,
+       -0.0158
+      ],
+      [
+       0.033,
+       0.042,
+       0.0135
+      ]
+     ]
+    },
+    {
+     "part": "NVIDIA Jetson Nano 4GB + carrier (underslung)",
+     "files": [
+      {
+       "mesh": "mapper__NVIDIA_Jetson_Nano_4GB__silver.stl",
+       "colour": "silver"
+      },
+      {
+       "mesh": "mapper__NVIDIA_Jetson_Nano_4GB__pcb.stl",
+       "colour": "pcb"
+      },
+      {
+       "mesh": "mapper__NVIDIA_Jetson_Nano_4GB__black.stl",
+       "colour": "black"
+      },
+      {
+       "mesh": "mapper__NVIDIA_Jetson_Nano_4GB__alu_dark.stl",
+       "colour": "alu_dark"
+      },
+      {
+       "mesh": "mapper__NVIDIA_Jetson_Nano_4GB__white.stl",
+       "colour": "white"
+      }
+     ],
+     "bbox_m": [
+      [
+       -0.0269,
+       -0.042,
+       -0.037
+      ],
+      [
+       0.0196,
+       0.042,
+       -0.013
+      ]
+     ]
+    },
+    {
+     "part": "Livox Mid-360 3D lidar (inverted, under frame)",
+     "files": [
+      {
+       "mesh": "mapper__Livox_Mid_360_3D_lidar__silver.stl",
+       "colour": "silver"
+      },
+      {
+       "mesh": "mapper__Livox_Mid_360_3D_lidar__carbon.stl",
+       "colour": "carbon"
+      },
+      {
+       "mesh": "mapper__Livox_Mid_360_3D_lidar__alu.stl",
+       "colour": "alu"
+      },
+      {
+       "mesh": "mapper__Livox_Mid_360_3D_lidar__window.stl",
+       "colour": "window"
+      },
+      {
+       "mesh": "mapper__Livox_Mid_360_3D_lidar__black.stl",
+       "colour": "black"
+      }
+     ],
+     "bbox_m": [
+      [
+       -0.0389,
+       -0.038,
+       -0.1175
+      ],
+      [
+       0.0471,
+       0.038,
+       -0.013
+      ]
+     ]
+    },
+    {
+     "part": "M10 GNSS + compass on mast",
+     "files": [
+      {
+       "mesh": "mapper__M10_GNSS__carbon.stl",
+       "colour": "carbon"
+      },
+      {
+       "mesh": "mapper__M10_GNSS__black.stl",
+       "colour": "black"
+      },
+      {
+       "mesh": "mapper__M10_GNSS__white.stl",
+       "colour": "white"
+      },
+      {
+       "mesh": "mapper__M10_GNSS__orange.stl",
+       "colour": "orange"
+      }
+     ],
+     "bbox_m": [
+      [
+       -0.0559,
+       -0.019,
+       0.0305
+      ],
+      [
+       -0.0179,
+       0.019,
+       0.1093
+      ]
+     ]
+    }
+   ]
+  },
+  "relay": {
+   "hide": [
+    "Broached Hexagon Socket Button Head Cap Screw ANSI B18.3.4M - M3 x 0.5 x 8 Steel Grade 2 Plain",
+    "Broached Hexagon Socket Button Head Cap Screw ANSI B18.3.4M - M3 x 0.5 x 8 Steel Grade 2 Plain",
+    "Broached Hexagon Socket Button Head Cap Screw ANSI B18.3.4M - M3 x 0.5 x 8 Steel Grade 2 Plain",
+    "Broached Hexagon Socket Button Head Cap Screw ANSI B18.3.4M - M3 x 0.5 x 8 Steel Grade 2 Plain"
+   ],
+   "parts": [
+    {
+     "part": "SpeedyBee F405 Mini stack 20x20",
+     "files": [
+      {
+       "mesh": "relay__SpeedyBee_F405_Mini_stack_20x20__black.stl",
+       "colour": "black"
+      },
+      {
+       "mesh": "relay__SpeedyBee_F405_Mini_stack_20x20__alu_dark.stl",
+       "colour": "alu_dark"
+      },
+      {
+       "mesh": "relay__SpeedyBee_F405_Mini_stack_20x20__silver.stl",
+       "colour": "silver"
+      },
+      {
+       "mesh": "relay__SpeedyBee_F405_Mini_stack_20x20__rubber.stl",
+       "colour": "rubber"
+      },
+      {
+       "mesh": "relay__SpeedyBee_F405_Mini_stack_20x20__gold.stl",
+       "colour": "gold"
+      }
+     ],
+     "bbox_m": [
+      [
+       -0.0234,
+       -0.0135,
+       0.0035
+      ],
+      [
+       0.0136,
+       0.0135,
+       0.0165
+      ]
+     ]
+    },
+    {
+     "part": "Landing gear (4x CF legs)",
+     "files": [
+      {
+       "mesh": "relay__Landing_gear__black.stl",
+       "colour": "black"
+      },
+      {
+       "mesh": "relay__Landing_gear__carbon.stl",
+       "colour": "carbon"
+      },
+      {
+       "mesh": "relay__Landing_gear__orange.stl",
+       "colour": "orange"
+      }
+     ],
+     "bbox_m": [
+      [
+       -0.0678,
+       -0.063,
+       -0.0725
+      ],
+      [
+       0.0659,
+       0.063,
+       -0.005
+      ]
+     ]
+    },
+    {
+     "part": "Top adapter plate",
+     "files": [
+      {
+       "mesh": "relay__Top_adapter_plate__silver.stl",
+       "colour": "silver"
+      },
+      {
+       "mesh": "relay__Top_adapter_plate__carbon.stl",
+       "colour": "carbon"
+      }
+     ],
+     "bbox_m": [
+      [
+       -0.0454,
+       -0.0419,
+       0.024
+      ],
+      [
+       0.029,
+       0.042,
+       0.0385
+      ]
+     ]
+    },
+    {
+     "part": "RFD900x long-range modem + 2 dipoles",
+     "files": [
+      {
+       "mesh": "relay__RFD900x_long_range_modem__blue.stl",
+       "colour": "blue"
+      },
+      {
+       "mesh": "relay__RFD900x_long_range_modem__gold.stl",
+       "colour": "gold"
+      },
+      {
+       "mesh": "relay__RFD900x_long_range_modem__black.stl",
+       "colour": "black"
+      }
+     ],
+     "bbox_m": [
+      [
+       -0.0294,
+       -0.015,
+       0.0385
+      ],
+      [
+       0.0381,
+       0.015,
+       0.194
+      ]
+     ]
+    },
+    {
+     "part": "Wi-Fi/LoRa mesh node + 2 dipoles",
+     "files": [
+      {
+       "mesh": "relay__Wi_Fi_LoRa_mesh_node__black.stl",
+       "colour": "black"
+      },
+      {
+       "mesh": "relay__Wi_Fi_LoRa_mesh_node__gold.stl",
+       "colour": "gold"
+      }
+     ],
+     "bbox_m": [
+      [
+       -0.0269,
+       -0.0205,
+       0.0535
+      ],
+      [
+       0.0251,
+       0.0205,
+       0.164
+      ]
+     ]
+    },
+    {
+     "part": "Raspberry Pi Zero 2 W companion",
+     "files": [
+      {
+       "mesh": "relay__Raspberry_Pi_Zero_2_W_companion__pcb.stl",
+       "colour": "pcb"
+      },
+      {
+       "mesh": "relay__Raspberry_Pi_Zero_2_W_companion__silver.stl",
+       "colour": "silver"
+      }
+     ],
+     "bbox_m": [
+      [
+       -0.0109,
+       -0.0325,
+       0.0385
+      ],
+      [
+       0.0191,
+       0.0325,
+       0.066
+      ]
+     ]
+    },
+    {
+     "part": "M10 GNSS + compass on mast",
+     "files": [
+      {
+       "mesh": "relay__M10_GNSS__black.stl",
+       "colour": "black"
+      },
+      {
+       "mesh": "relay__M10_GNSS__carbon.stl",
+       "colour": "carbon"
+      },
+      {
+       "mesh": "relay__M10_GNSS__white.stl",
+       "colour": "white"
+      },
+      {
+       "mesh": "relay__M10_GNSS__orange.stl",
+       "colour": "orange"
+      }
+     ],
+     "bbox_m": [
+      [
+       -0.0574,
+       -0.019,
+       0.0385
+      ],
+      [
+       -0.0194,
+       0.019,
+       0.1153
+      ]
+     ]
+    }
+   ]
+  }
+ },
+ "motor_xy_m": {
+  "motor_1": [
+   -0.0688,
+   0.0688
+  ],
+  "motor_2": [
+   -0.0688,
+   -0.0687
+  ],
+  "motor_3": [
+   0.0688,
+   0.0688
+  ],
+  "motor_4": [
+   0.0688,
+   -0.0689
+  ]
+ },
+ "prop_plane_z_m": 0.0175,
+ "prop_radius_m": 0.0641,
+ "body_bbox_m": [
+  [
+   -0.0829,
+   -0.0829,
+   -0.007
+  ],
+  [
+   0.083,
+   0.083,
+   0.0315
+  ]
+ ],
+ "battery_bbox_m": [
+  [
+   -0.0427,
+   -0.0199,
+   -0.0516
+  ],
+  [
+   0.0436,
+   0.0199,
+   -0.004
+  ]
+ ],
+ "triangles": {
+  "body": 23068,
+  "prop": 5860
+ }
+}

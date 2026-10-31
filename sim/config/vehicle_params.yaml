@@ -1,0 +1,45 @@
+# Vehicle parameters for the Gazebo models (tools/gen_models.py, tools/gen_airframes.py).
+# Masses are typical figures for each class of part, not scale readings: weigh the parts and regenerate.
+
+base:                         # the team's frame, "assembly final"
+  frame_kg: 0.120             # plates, arms, standoffs
+  motor_kg: 0.030             # each, Racerstar BR2205
+  prop_kg: 0.0045             # each, Gemfan Hurricane 51466
+  battery_kg: 0.190           # 4S LiPo under the frame
+  battery_mah: 1500
+
+propulsion:                   # PX4 x500 structure, ~0.9 kgf max thrust per motor; calibrate on a thrust stand
+  max_rot_velocity: 1000.0    # rad/s in sim units (rotorVelocitySlowdownSim = 10)
+  motor_constant: 8.54858e-06
+  moment_constant: 0.016
+  time_constant_up: 0.0125
+  time_constant_down: 0.025
+  rotor_drag_coefficient: 8.06428e-05
+  rolling_moment_coefficient: 1.0e-06
+
+payload_kg:                   # keys match the component names in the Fusion designs
+  "SpeedyBee F405 Mini stack 20x20": 0.020
+  "Landing gear (4x CF legs)": 0.040
+  "Landing gear (4x CF legs, tall)": 0.055
+  "Top adapter plate": 0.012
+  "Bottom adapter plate": 0.017
+  "NVIDIA Jetson Nano 4GB + carrier": 0.150
+  "NVIDIA Jetson Nano 4GB + carrier (underslung)": 0.150
+  "Sensor head: IMX219 RGB + Lepton 3.5 thermal": 0.030
+  "M10 GNSS + compass on mast": 0.030
+  "4S 1550 mAh LiPo (top mount)": 0.185
+  "Livox Mid-360 3D lidar (inverted, under frame)": 0.285
+  "RFD900x long-range modem + 2 dipoles": 0.030
+  "Wi-Fi/LoRa mesh node + 2 dipoles": 0.025
+  "Raspberry Pi Zero 2 W companion": 0.012
+
+roles:
+  scout:
+    cam_pitch_rad: 0.5934     # sensor head tilted 34 deg down
+
+sensors:
+  rgb_camera:      {hfov_rad: 1.085, width: 640, height: 480, rate_hz: 2, far_m: 150}   # IMX219 binned, 62 deg
+  thermal_camera:  {hfov_rad: 0.994, width: 160, height: 120, rate_hz: 4, far_m: 80,   # Lepton 3.5, 57 deg
+                    min_temp_k: 253.15, max_temp_k: 673.15}
+  lidar_3d:        {h_samples: 300, v_samples: 20, v_min_rad: -0.122, v_max_rad: 0.908,  # Mid-360, -7..52 deg
+                    rate_hz: 2, range_min_m: 0.1, range_max_m: 70}
