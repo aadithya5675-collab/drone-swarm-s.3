@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
 import { FastForward, Film } from 'lucide-react';
 import { E, clockStr, COND_C } from '../lib/engine';
 import { useEngine } from '../lib/store';
 import { Panel, Button } from '../components/ui';
 import { FixChip } from '../components/Ops';
 import { VIDEOS } from '../config';
+import { useVideo } from '../lib/videos';
 import LiveOps from './LiveOps';
 
 const evT = (re: RegExp) => E.S.events.find(e => re.test(e.text) && e.t != null)?.t ?? null;
@@ -104,22 +104,12 @@ function Final() {
 }
 
 function Recordings() {
-  const [have, setHave] = useState<Record<string, boolean>>({});
-  useEffect(() => {
-    VIDEOS.forEach(v => fetch('videos/' + v.file, { method: 'HEAD' })
-      .then(r => setHave(h => ({ ...h, [v.file]: r.ok && !(r.headers.get('content-type') || '').includes('text/html') })))
-      .catch(() => setHave(h => ({ ...h, [v.file]: false }))));
-  }, []);
   return (
     <Panel title="Recordings from the simulation" sub="the key moments of the run, in order">
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {VIDEOS.map((v, i) => (
           <figure key={v.file} className="group overflow-hidden rounded-xl border border-line bg-black/40 transition-all duration-200 hover:border-white/20 hover:shadow-lg">
-            <div className="relative aspect-video bg-black/80">
-              {have[v.file]
-                ? <video src={'videos/' + v.file} controls preload="metadata" playsInline className="h-full w-full object-cover" />
-                : <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-faint"><Film size={22} /><span className="text-xs font-mono">{have[v.file] === false ? 'recording pending' : 'loading…'}</span></div>}
-            </div>
+            <Clip file={v.file} />
             <figcaption className="px-4 py-3.5">
               <div className="flex items-baseline gap-2">
                 <span className="num flex h-5 w-5 items-center justify-center rounded bg-accent/15 text-[10.5px] font-semibold text-accent">{String(i + 1).padStart(2, '0')}</span>
@@ -131,5 +121,16 @@ function Recordings() {
         ))}
       </div>
     </Panel>
+  );
+}
+
+function Clip({ file }: { file: string }) {
+  const v = useVideo(file);
+  return (
+    <div className="relative aspect-video bg-black/80">
+      {!v.missing
+        ? <video src={v.src} controls preload="auto" playsInline className="h-full w-full object-cover" />
+        : <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-faint"><Film size={22} /><span className="text-xs font-mono">recording pending</span></div>}
+    </div>
   );
 }

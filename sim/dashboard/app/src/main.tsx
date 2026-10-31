@@ -4,8 +4,10 @@ import * as RT from '@radix-ui/react-tooltip';
 import './index.css';
 import App from './App';
 import { E } from './lib/engine';
+import { preloadVideos } from './lib/videos';
 
 E.loadStatic().catch(err => console.error('static data', err));
+preloadVideos();
 const q = new URLSearchParams(location.search);
 if (q.get('replay')) {
   const file = q.get('replay')!.replace(/[^\w.-]/g, '');

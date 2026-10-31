@@ -3,7 +3,7 @@
 # Then: tools/trigger.sh (the landslide), tools/damage.sh <drone>, tools/stop_story.sh
 source "$(dirname "$0")/story_env.sh"
 bash "$SIM/tools/stop_story.sh" >/dev/null 2>&1
-rm -f "$LOG"/*.log "$RUN"/truth.json "$RUN"/landslide.flag
+rm -f "$LOG"/*.log "$RUN"/truth.json "$RUN"/landslide.flag "$RUN"/ready
 cp "$SIM"/px4/airframes/456* "$PX4/build/px4_sitl_default/etc/init.d-posix/airframes/"
 # PX4 spawns drones from its own model folder
 for m in resqmesh_scout resqmesh_mapper resqmesh_relay resqmesh_scout_parked resqmesh_mapper_parked resqmesh_relay_parked resqmesh_quad; do
@@ -28,10 +28,14 @@ for N in $(python3 -c "import yaml; print(' '.join(d['name'] for d in yaml.safe_
   bash "$SIM/tools/launch_drone.sh" $N; sleep 4
 done
 echo "[5/5] waiting for the swarm to report in over the mesh"
-for i in $(seq 30); do
-  n=$(timeout 12 ros2 topic echo --once /base/fleet std_msgs/msg/String 2>/dev/null | grep -o 'state' | wc -l)
-  [ "${n:-0}" -ge 5 ] && break; sleep 2
+# every active drone's PX4 and agent up (a topic probe times out under load), then time for them to join the mesh
+ACTIVE=$(python3 -c "import yaml; print(sum(1 for d in yaml.safe_load(open('$CFG/fleet_story.yaml'))['drones'] if not d.get('reserve')))")
+for i in $(seq 180); do
+  n=$(pgrep -f 'bin/px4 -i' | wc -l); a=$(pgrep -f 'lib/resqmesh_mission/drone_agent' | wc -l)
+  [ "$n" -ge "$ACTIVE" ] && [ "$a" -ge "$ACTIVE" ] && break; sleep 2
 done
+sleep 25
+touch "$RUN/ready"
 echo
 echo "READY. Swarm on the pads at the Chooralmala camp ($n drones reporting through the tower)."
 echo "  dashboard:            http://localhost:8080/story.html"

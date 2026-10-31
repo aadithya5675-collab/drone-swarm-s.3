@@ -56,11 +56,12 @@ function CampProps() {
   );
 }
 
-export default function CampStage() {
+export default function CampStage({ active = true }: { active?: boolean }) {
   const still = reducedMotion();
   return (
     <Canvas
-      dpr={[1, 2]}
+      frameloop={active ? 'always' : 'never'}
+      dpr={[1, 1.5]}
       camera={{ position: [-0.2, 5.2, 12.5], fov: 40 }}
       gl={{ antialias: true, alpha: true, powerPreference: 'default' }}
       onCreated={({ gl }) => {

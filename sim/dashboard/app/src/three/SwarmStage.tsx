@@ -16,7 +16,7 @@ const FORMATION: { role: RoleName; label: string; p: [number, number, number] }[
   { role: 'scout', label: 'Reserve Scout', p: [-2.55, 1.5, 0.9] },
   { role: 'scout', label: 'Reserve Scout', p: [2.55, 1.5, 0.9] }
 ];
-const appearAt = (k: number) => 0.16 + k * 0.065;
+const appearAt = (k: number) => 0.03 + k * 0.045;
 const ease = (x: number) => (x < 0 ? 0 : x > 1 ? 1 : x * x * (3 - 2 * x));
 
 function TerrainPoints() {
@@ -86,11 +86,11 @@ function Member({ m, k, progress, onExplode, hovered }: { m: (typeof FORMATION)[
   );
 }
 
-export default function SwarmStage({ progress, onExplode }: { progress: MotionValue<number>; onExplode: (r: RoleName) => void }) {
+export default function SwarmStage({ progress, onExplode, active = true }: { progress: MotionValue<number>; onExplode: (r: RoleName) => void; active?: boolean }) {
   const hovered = useRef<RoleName | null>(null);
   return (
     <div className="h-full w-full" onDoubleClick={() => { if (hovered.current) onExplode(hovered.current); }}>
-    <Canvas dpr={[1, 2]} camera={{ position: [0, 11, 17], fov: 38, near: 0.05, far: 200 }} gl={{ antialias: true, alpha: true, powerPreference: 'default' }}
+    <Canvas frameloop={active ? 'always' : 'never'} dpr={[1, 1.5]} camera={{ position: [0, 11, 17], fov: 38, near: 0.05, far: 200 }} gl={{ antialias: true, alpha: true, powerPreference: 'default' }}
       onCreated={({ gl }) => {
         gl.domElement.addEventListener('webglcontextlost', e => e.preventDefault(), false);
       }}

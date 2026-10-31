@@ -2,7 +2,7 @@
 
 Run on the Windows machine that has the simulation installed:  python sim/tools/live_agent.py
 Then open http://127.0.0.1:8765 (or the deployed site) and press LIVE.
-  GET  /status            {ok, wsl, sim_ready, running}
+  GET  /status            {ok, wsl, sim_ready, running, swarm_ready}
   POST /start             sync this checkout into WSL and open the camp (Gazebo + swarm + base)
   POST /trigger           the landslide            body: {"seed": 19}
   POST /damage            hit a drone              body: {"drone": "scout_1"}
@@ -38,8 +38,10 @@ def wsl(cmd, wait=True, timeout=20):
 
 
 def status():
-    code, out = wsl('test -d ~/resqmesh/sim/ros2_ws/install/resqmesh_mission && echo ready; pgrep -f "gz sim -" >/dev/null && echo running')
-    return {'ok': True, 'wsl': code == 0 or bool(out), 'sim_ready': 'ready' in out, 'running': 'running' in out}
+    code, out = wsl('test -d ~/resqmesh/sim/ros2_ws/install/resqmesh_mission && echo installed; '
+                    'pgrep -f "gz sim -" >/dev/null && echo running && test -f ~/resqmesh/run/ready && echo swarm', timeout=30)
+    return {'ok': True, 'wsl': code == 0 or bool(out), 'sim_ready': 'installed' in out, 'running': 'running' in out,
+            'swarm_ready': 'swarm' in out}
 
 
 class Handler(SimpleHTTPRequestHandler):
@@ -80,7 +82,9 @@ class Handler(SimpleHTTPRequestHandler):
         tools = '~/resqmesh/sim/tools'
         route = self.path.split('?')[0]
         if route == '/start':
-            wsl('bash %s/tools/sync.sh && bash %s/run_story.sh' % (wsl_path(SIM), tools), wait=False)
+            # WSL ends a session's background processes when its wsl.exe exits, so this one stays open while Gazebo runs
+            wsl('bash %s/tools/sync.sh && bash %s/run_story.sh; while pgrep -f "gz sim -" >/dev/null; do sleep 5; done'
+                % (wsl_path(SIM), tools), wait=False)
         elif route == '/trigger':
             wsl('bash %s/trigger.sh %d' % (tools, int(body.get('seed', 19))), wait=False)
         elif route == '/damage':

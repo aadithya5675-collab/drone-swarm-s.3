@@ -6,7 +6,7 @@ import { E } from '../lib/engine';
 import { useEngine, useUI } from '../lib/store';
 import { Button, cn } from './ui';
 
-interface Status { ok: boolean; wsl?: boolean; sim_ready?: boolean; running?: boolean; phase?: string | null }
+interface Status { ok: boolean; wsl?: boolean; sim_ready?: boolean; running?: boolean; swarm_ready?: boolean; phase?: string | null }
 
 async function call(path: string, method = 'GET', body?: unknown, ms = 2500): Promise<Status | null> {
   const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), ms);
@@ -27,7 +27,7 @@ export function LivePanel() {
 
   const scan = async () => {
     setSt('scan'); setLog([]);
-    const s = await call('/status', 'GET', undefined, 1800);
+    const s = await call('/status', 'GET', undefined, 30000);
     setStatus(s); setSt(s?.ok ? 'found' : 'none');
   };
   useEffect(() => { if (open) scan(); }, [open]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -35,18 +35,24 @@ export function LivePanel() {
   const enter = () => { E.startLive(); setOpen(false); useUI.getState().go('twin'); };
   const start = async () => {
     setSt('starting');
-    if (!status?.running) {
-      say('Starting Gazebo, PX4 and the swarm…');
-      await call('/start', 'POST', {}, 8000);
-      for (let i = 0; i < 150; i++) {
-        await sleep(2000);
-        const s = await call('/status'); setStatus(s);
-        if (s?.running) break;
-        if (i % 5 === 4) say('still starting… ' + (2 * (i + 1)) + ' s');
+    if (!status?.swarm_ready) {
+      if (!status?.running) { say('Starting Gazebo, PX4 and the swarm…'); await call('/start', 'POST', {}, 8000); }
+      else say('Gazebo is up. Waiting for the swarm to join the mesh…');
+      // the camp takes a few minutes on a laptop: Gazebo, then each drone's PX4 and agent, then the mesh
+      const t0 = performance.now();
+      let ready = false;
+      while (performance.now() - t0 < 15 * 60e3) {
+        await sleep(4000);
+        const s = await call('/status', 'GET', undefined, 30000); if (s) setStatus(s);
+        if (s?.swarm_ready) { ready = true; break; }
+        const secs = Math.round((performance.now() - t0) / 1000);
+        if (secs % 20 < 4) say((s?.running ? 'Swarm powering up on the pads… ' : 'Opening the valley in Gazebo… ') + secs + ' s');
       }
+      if (!ready) { say('The swarm did not report in. Check the Gazebo window, then press the button again.'); setSt('found'); return; }
     }
     say('Swarm on the pads. Triggering the landslide…');
-    await call('/trigger', 'POST', {}, 8000);
+    const r = await call('/trigger', 'POST', { seed: 19 }, 15000);
+    if (!r?.ok) { say('The agent did not accept the trigger. Is live_agent.py still running?'); setSt('found'); return; }
     enter();
   };
 
@@ -73,7 +79,7 @@ export function LivePanel() {
                   {status?.running && status.phase && status.phase !== 'STANDBY'
                     ? <Button variant="accent" className="h-10 px-4 text-sm" onClick={enter}>Watch the running mission</Button>
                     : <Button variant="accent" className="h-10 px-4 text-sm" disabled={st === 'starting' || !status?.sim_ready} onClick={start}>
-                        {st === 'starting' ? <Loader2 size={15} className="animate-spin" /> : <Play size={15} />}{status?.running ? 'Trigger the landslide' : 'Start the mission'}
+                        {st === 'starting' ? <Loader2 size={15} className="animate-spin" /> : <Play size={15} />}{status?.swarm_ready ? 'Trigger the landslide' : status?.running ? 'Wait for the swarm, then trigger' : 'Start the mission'}
                       </Button>}
                 </div>
                 <p className="text-xs text-faint">Gazebo opens on this machine. The mission takes about ten minutes from the alert to everyone back at the camp.</p>
