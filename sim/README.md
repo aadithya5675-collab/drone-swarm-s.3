@@ -133,4 +133,4 @@ python test/test_rescue_route.py && python test/test_geo.py
 - Sensor rates are below the real parts (thermal 4 Hz, RGB 2 Hz, lidar 12 k points/s) because Gazebo leaks memory per
   rendered frame on WSL.
 - The demo searches the 166 m of the debris corridor nearest the camp (sector Z4) with six people in it, so a whole
-  mission, from alert to every drone back on its pad, fits in about ten minutes.
+  mission, from alert to every drone back on its pad, takes about 14 minutes.
