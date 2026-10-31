@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import * as D from '@radix-ui/react-dialog';
-import { X, Loader2, MonitorCheck, MonitorX, Play, Zap, Square, Terminal } from 'lucide-react';
+import { X, Loader2, MonitorCheck, MonitorX, Zap, Square, Terminal } from 'lucide-react';
 import { AGENT_URL, REPO_URL, LOCAL_SITE } from '../config';
 import { E } from '../lib/engine';
 import { useEngine, useUI } from '../lib/store';
@@ -17,82 +17,86 @@ async function call(path: string, method = 'GET', body?: unknown, ms = 2500): Pr
 }
 
 const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
-let starting = false;  // one start sequence at a time, however often the button or panel is used
+
+const RUN_CMDS: [string, string][] = [
+  ['Open the camp (PowerShell, in the repo folder). Keep this window open.', 'wsl -d Ubuntu-24.04 -- bash sim/tools/live.sh'],
+  ['When it prints "Camp is up", trigger the landslide from a second window', 'wsl -d Ubuntu-24.04 -- bash ~/resqmesh/sim/tools/trigger.sh 19'],
+  ['Optional: hit a drone mid-mission', 'wsl -d Ubuntu-24.04 -- bash ~/resqmesh/sim/tools/damage.sh scout_1']
+];
+
+/** True once the simulation's rosbridge answers on this machine. */
+function probe(ms = 1500): Promise<boolean> {
+  return new Promise(res => {
+    let ws: WebSocket;
+    try { ws = new WebSocket('ws://localhost:9090'); } catch { res(false); return; }
+    const t = setTimeout(() => { ws.close(); res(false); }, ms);
+    ws.onopen = () => { clearTimeout(t); ws.close(); res(true); };
+    ws.onerror = () => { clearTimeout(t); res(false); };
+  });
+}
+
+function Cmd({ c }: { c: string }) {
+  const [done, setDone] = useState(false);
+  return (
+    <div className="group relative">
+      <pre className="num overflow-x-auto rounded-lg border border-white/10 bg-black/50 px-3 py-2.5 pr-16 text-[12px] text-fg">{c}</pre>
+      <button onClick={() => { navigator.clipboard?.writeText(c); setDone(true); setTimeout(() => setDone(false), 1200); }}
+        className="absolute top-1.5 right-1.5 rounded-md border border-white/10 bg-white/[.06] px-2 py-1 text-[11px] text-muted hover:text-fg">{done ? 'copied' : 'copy'}</button>
+    </div>
+  );
+}
 
 export function LivePanel() {
   const open = useUI(s => s.live), setOpen = useUI(s => s.setLive);
-  const [st, setSt] = useState<'scan' | 'found' | 'none' | 'starting'>('scan');
-  const [status, setStatus] = useState<Status | null>(null);
-  const [log, setLog] = useState<string[]>([]);
-  const say = (s: string) => setLog(l => [...l.slice(-6), s]);
-
-  const scan = async () => {
-    setSt('scan'); setLog([]);
-    const s = await call('/status', 'GET', undefined, 30000);
-    setStatus(s); setSt(s?.ok ? 'found' : 'none');
-  };
-  useEffect(() => { if (open) scan(); }, [open]); // eslint-disable-line react-hooks/exhaustive-deps
-
+  const [st, setSt] = useState<'scan' | 'wait' | 'linked'>('scan');
+  const [secs, setSecs] = useState(0);
+  const [setup, setSetup] = useState(false);
   const enter = () => { E.startLive(); setOpen(false); useUI.getState().go('twin'); };
-  const start = async () => {
-    if (starting) return;
-    starting = true;
-    try { await run(); } finally { starting = false; }
-  };
-  const run = async () => {
-    setSt('starting');
-    if (!status?.swarm_ready) {
-      // a half-started camp (Gazebo up, drones gone) never becomes ready, so always start clean
-      say('Starting Gazebo, PX4 and the swarm…');
-      await call('/start', 'POST', {}, 8000);
-      // the camp takes a few minutes on a laptop: Gazebo, then each drone's PX4 and agent, then the mesh
-      const t0 = performance.now();
-      let ready = false;
-      while (performance.now() - t0 < 15 * 60e3) {
-        await sleep(4000);
-        const s = await call('/status', 'GET', undefined, 30000); if (s) setStatus(s);
-        if (s?.swarm_ready) { ready = true; break; }
-        const secs = Math.round((performance.now() - t0) / 1000);
-        if (secs % 20 < 4) say((s?.running ? 'Swarm powering up on the pads… ' : 'Opening the valley in Gazebo… ') + secs + ' s');
+
+  useEffect(() => {
+    if (!open) return;
+    let alive = true;
+    setSt('scan'); setSecs(0);
+    (async () => {
+      for (let i = 0; alive; i++) {
+        if (await probe()) { if (!alive) return; setSt('linked'); setTimeout(() => alive && enter(), 900); return; }
+        if (!alive) return;
+        setSt('wait'); setSecs(2 * i);
+        await sleep(2000);
       }
-      if (!ready) { say('The swarm did not report in. Check the Gazebo window, then press the button again.'); setSt('found'); return; }
-    }
-    say('Swarm on the pads. Triggering the landslide…');
-    const r = await call('/trigger', 'POST', { seed: 19 }, 15000);
-    if (!r?.ok) { say('The agent did not accept the trigger. Is live_agent.py still running?'); setSt('found'); return; }
-    enter();
-  };
+    })();
+    return () => { alive = false; };
+  }, [open]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <D.Root open={open} onOpenChange={setOpen}>
       <D.Portal>
         <D.Overlay className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm" />
-        <D.Content className="glass fixed top-1/2 left-1/2 z-50 w-[min(620px,calc(100vw-32px))] -translate-x-1/2 -translate-y-1/2 bg-[#0a0d13]/92 p-6 outline-none">
+        <D.Content className="glass fixed top-1/2 left-1/2 z-50 max-h-[90vh] w-[min(660px,calc(100vw-32px))] -translate-x-1/2 -translate-y-1/2 overflow-y-auto bg-[#0a0d13]/92 p-6 outline-none">
           <D.Title className="text-base font-medium text-hi">Run it live</D.Title>
-          <D.Description className="mt-1 text-[13px] text-muted">The website drives the simulation on this machine through a small local agent.</D.Description>
-          <div className="mt-5">
-            {st === 'scan' && <div className="flex items-center gap-3 py-6 text-sm text-muted"><Loader2 size={16} className="animate-spin text-accent" />Scanning this device for the ResQMesh simulation…</div>}
-            {(st === 'found' || st === 'starting') && (
-              <div className="space-y-4">
-                <div className="flex items-start gap-3 rounded-xl border border-alive/25 bg-alive/[.06] p-4">
-                  <MonitorCheck size={18} className="mt-0.5 shrink-0 text-alive" />
-                  <div className="text-[13px]">
-                    <div className="font-medium text-hi">Simulation found on this device</div>
-                    <div className="num mt-1 text-[11.5px] text-muted">WSL {status?.wsl ? 'ok' : '—'} · build {status?.sim_ready ? 'ready' : 'not built'} · {status?.running ? 'running' + (status.phase ? ' · ' + status.phase : '') : 'stopped'}</div>
-                  </div>
-                </div>
-                {log.length > 0 && <div className="num space-y-1 rounded-lg bg-black/40 p-3 text-[11.5px] text-muted">{log.map((l, i) => <div key={i}>{l}</div>)}</div>}
-                <div className="flex flex-wrap gap-2">
-                  {status?.running && status.phase && status.phase !== 'STANDBY'
-                    ? <Button variant="accent" className="h-10 px-4 text-sm" onClick={enter}>Watch the running mission</Button>
-                    : <Button variant="accent" className="h-10 px-4 text-sm" disabled={st === 'starting' || !status?.sim_ready} onClick={start}>
-                        {st === 'starting' ? <Loader2 size={15} className="animate-spin" /> : <Play size={15} />}{status?.swarm_ready ? 'Trigger the landslide' : status?.running ? 'Wait for the swarm, then trigger' : 'Start the mission'}
-                      </Button>}
-                </div>
-                <p className="text-xs text-faint">Gazebo opens on this machine. The mission takes about ten minutes from the alert to everyone back at the camp.</p>
+          <D.Description className="mt-1 text-[13px] text-muted">Start the simulation from a terminal on this machine. This page links to it by itself and shows the live mission.</D.Description>
+          <div className="mt-5 space-y-4">
+            <div className={cn('flex items-center gap-3 rounded-xl border p-4 text-[13px]', st === 'linked' ? 'border-alive/30 bg-alive/[.07]' : 'border-white/10 bg-white/[.03]')}>
+              {st === 'linked' ? <MonitorCheck size={18} className="shrink-0 text-alive" /> : <Loader2 size={17} className="shrink-0 animate-spin text-accent" />}
+              <div>
+                <div className="font-medium text-hi">{st === 'linked' ? 'Simulation linked: opening the live mission' : st === 'scan' ? 'Scanning this device for the simulation…' : 'Waiting for the simulation on this device'}</div>
+                {st === 'wait' && <div className="num mt-0.5 text-[11.5px] text-muted">listening on localhost:9090 · {secs} s · run the commands below</div>}
               </div>
-            )}
-            {st === 'none' && <SetupGuide onRetry={scan} />}
+            </div>
+            {st !== 'linked' && <>
+              <ol className="space-y-3">
+                {RUN_CMDS.map(([h, c], i) => (
+                  <li key={c} className="flex gap-3">
+                    <span className="num mt-0.5 text-[11px] text-accent">0{i + 1}</span>
+                    <div className="min-w-0 flex-1"><div className="mb-1.5 text-[13px] text-fg">{h}</div><Cmd c={c} /></div>
+                  </li>
+                ))}
+              </ol>
+              <p className="text-xs text-faint">The camp takes 3 to 5 minutes to come up. The mission runs about 14 minutes from the alert to every drone back on its pad.
+                {location.protocol === 'https:' && <> If this page never links, open <a className="text-accent underline" href={LOCAL_SITE}>{LOCAL_SITE}</a> instead.</>}</p>
+              <button onClick={() => setSetup(v => !v)} className="text-xs text-muted underline hover:text-fg">{setup ? 'hide' : 'first time on this machine? install steps'}</button>
+              {setup && <SetupGuide onRetry={() => setSetup(false)} />}
+            </>}
           </div>
           <D.Close asChild><Button className="absolute top-3 right-3 px-2" aria-label="Close"><X size={15} /></Button></D.Close>
         </D.Content>
@@ -107,7 +111,6 @@ function SetupGuide({ onRetry }: { onRetry: () => void }) {
     ['Get the code', `git clone ${REPO_URL}`],
     ['Install ROS 2, Gazebo and PX4 (WSL Ubuntu 24.04)', 'wsl -d Ubuntu-24.04 -u root -- bash sim/setup/01_ros_gazebo.sh\nwsl -d Ubuntu-24.04 -u root -- bash sim/setup/02_px4_deps.sh'],
     ['Build and fetch models', 'wsl -d Ubuntu-24.04 -- bash sim/setup/03_build.sh\nwsl -d Ubuntu-24.04 -- bash sim/setup/04_fetch_models.sh'],
-    ['Start the local agent', 'python sim/tools/live_agent.py']
   ];
   return (
     <div className="space-y-4">

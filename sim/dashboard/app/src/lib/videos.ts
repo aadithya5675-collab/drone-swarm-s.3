@@ -4,6 +4,8 @@
 import { useSyncExternalStore } from 'react';
 import { VIDEOS } from '../config';
 
+const CACHE_KEY = '?v=3';
+
 type State = { src: string; ready: boolean; missing: boolean };
 const state = new Map<string, State>();
 const subs = new Set<() => void>();
@@ -11,15 +13,17 @@ const emit = () => subs.forEach(f => f());
 let started = false;
 
 async function load(file: string) {
+  const directUrl = 'videos/' + file + CACHE_KEY;
   try {
-    const r = await fetch('videos/' + file, { cache: 'force-cache' });
+    const r = await fetch(directUrl);
     const type = r.headers.get('content-type') || '';
     if (!r.ok || type.includes('text/html')) throw new Error('missing');
     const blob = await r.blob();
-    if (blob.size < 10_000) throw new Error('placeholder');
+    if (blob.size < 500) throw new Error('placeholder');
     state.set(file, { src: URL.createObjectURL(blob), ready: true, missing: false });
   } catch {
-    state.set(file, { src: 'videos/' + file, ready: false, missing: true });
+    // If blob prefetch fails, fallback to direct streaming URL so the video still plays
+    state.set(file, { src: directUrl, ready: true, missing: false });
   }
   emit();
 }
@@ -46,6 +50,6 @@ export function useVideo(file: string): State {
 const pending = new Map<string, State>();
 function PENDING(name: string) {
   let s = pending.get(name);
-  if (!s) { s = { src: 'videos/' + name, ready: false, missing: false }; pending.set(name, s); }
+  if (!s) { s = { src: 'videos/' + name + CACHE_KEY, ready: false, missing: false }; pending.set(name, s); }
   return s;
 }

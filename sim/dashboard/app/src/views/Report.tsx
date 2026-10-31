@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { FastForward, Film } from 'lucide-react';
 import { E, clockStr, COND_C } from '../lib/engine';
 import { useEngine } from '../lib/store';
@@ -126,10 +127,11 @@ function Recordings() {
 
 function Clip({ file }: { file: string }) {
   const v = useVideo(file);
+  const [error, setError] = useState(false);
   return (
     <div className="relative aspect-video bg-black/80">
-      {!v.missing
-        ? <video src={v.src} controls preload="auto" playsInline className="h-full w-full object-cover" />
+      {!error
+        ? <video src={v.src} controls preload="metadata" playsInline className="h-full w-full object-cover" onError={() => setError(true)} />
         : <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-faint"><Film size={22} /><span className="text-xs font-mono">recording pending</span></div>}
     </div>
   );

@@ -1,4 +1,4 @@
-import{r as ye,i as av,j as Ln,L as Sx}from"./story-c0yDQFGk.js";/**
+import{r as ye,i as av,j as Ln,L as Sx}from"./story-CD15z5HX.js";/**
  * @license
  * Copyright 2010-2024 Three.js Authors
  * SPDX-License-Identifier: MIT
