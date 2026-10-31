@@ -59,7 +59,13 @@ function CampProps() {
 export default function CampStage() {
   const still = reducedMotion();
   return (
-    <Canvas dpr={[1, 2]} camera={{ position: [-0.2, 5.2, 12.5], fov: 40 }} gl={{ antialias: true, alpha: true }}>
+    <Canvas
+      dpr={[1, 2]}
+      camera={{ position: [-0.2, 5.2, 12.5], fov: 40 }}
+      gl={{ antialias: true, alpha: true, powerPreference: 'default' }}
+      onCreated={({ gl }) => {
+        gl.domElement.addEventListener('webglcontextlost', e => e.preventDefault(), false);
+      }}>
       <Environment resolution={128}><Lightformer intensity={2} position={[0, 5, 3]} scale={[8, 2, 1]} /></Environment>
       <ambientLight intensity={0.4} /><directionalLight position={[3, 6, 3]} intensity={1.2} />
       <Ground /><CampProps />

@@ -32,9 +32,14 @@ function Final() {
   const S = E.S, P = S.persons.filter(p => p.condition !== 'UNKNOWN');
   const alive = P.filter(p => p.condition === 'ALIVE').length, dead = P.length - alive;
   const first = P.map(p => E.foundAt(p)).filter((t): t is number => t != null).sort((a, b) => a - b)[0] ?? null;
-  const swept = evT(/Search complete/i) ?? S.history.find(h => h.phase === 'RTB')?.t ?? null, home = evT(/Mission complete|All drones landed/i) ?? (S.history.length ? S.history[S.history.length - 1].t : null);
-  const lost = S.lossT.length, reserves = S.events.filter(e => /launching reserve/i.test(e.text)).length;
   const cov = S.story?.coverage ?? S.plan?.coverage ?? null, pdr = E.pdrNow().pdr;
+  const home = evT(/Mission complete|All drones landed/i) ?? (S.history.length ? S.history[S.history.length - 1].t : null);
+  const swept = evT(/Search complete/i)
+    ?? S.history.find(h => h.phase === 'RTB')?.t
+    ?? (cov != null && cov >= 0.9 ? S.history.find(h => (h.cov ?? 0) >= cov - 0.01)?.t : null)
+    ?? evT(/finished Z\d/i)
+    ?? (home != null ? Math.max(0, home - 90) : null);
+  const lost = S.lossT.length, reserves = S.events.filter(e => /launching reserve/i.test(e.text)).length;
   const stats: [string, string, string][] = [
     ['People located', String(P.length), `${alive} alive · ${dead} likely deceased`],
     ['Area searched', cov != null ? Math.round(cov * 100) + '%' : '—', 'of the debris corridor'],

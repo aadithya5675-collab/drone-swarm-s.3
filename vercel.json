@@ -7,6 +7,7 @@
   "rewrites": [{ "source": "/", "destination": "/story.html" }],
   "headers": [
     { "source": "/replays/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600" }] },
+    { "source": "/models/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }] },
     { "source": "/videos/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600" }] }
   ]
 }

@@ -88,7 +88,10 @@ export default function Explode({ role, onClose }: { role: RoleName; onClose: ()
       <div className="absolute inset-x-0 bottom-6 z-10 flex justify-center gap-3 px-6">
         {GROUPS.map(g => <span key={g.key} className="flex items-center gap-2 rounded-full border border-white/10 bg-black/40 px-3 py-1.5 text-xs text-fg"><i className="h-2 w-2 rounded-full" style={{ background: g.color }} />{g.title}</span>)}
       </div>
-      <Canvas dpr={[1, 2]} camera={{ position: [0, 1.2, 4.6], fov: 34 }} gl={{ antialias: true, alpha: true }}>
+      <Canvas dpr={[1, 2]} camera={{ position: [0, 1.2, 4.6], fov: 34 }} gl={{ antialias: true, alpha: true, powerPreference: 'default' }}
+        onCreated={({ gl }) => {
+          gl.domElement.addEventListener('webglcontextlost', e => e.preventDefault(), false);
+        }}>
         <Environment resolution={256}>
           <Lightformer intensity={2.2} position={[0, 3, 2]} scale={[6, 1.2, 1]} />
           <Lightformer intensity={0.8} color="#5eead4" position={[-3, 1, -1]} scale={[1, 4, 1]} />

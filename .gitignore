@@ -25,3 +25,4 @@ Desktop.ini
 
 # Vercel build output (sim/dashboard/app/vercel.json)
 sim/dashboard/app/dist/
+*.timestamp-*.mjs

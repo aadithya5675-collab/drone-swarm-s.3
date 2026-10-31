@@ -90,7 +90,10 @@ export default function SwarmStage({ progress, onExplode }: { progress: MotionVa
   const hovered = useRef<RoleName | null>(null);
   return (
     <div className="h-full w-full" onDoubleClick={() => { if (hovered.current) onExplode(hovered.current); }}>
-    <Canvas dpr={[1, 2]} camera={{ position: [0, 11, 17], fov: 38, near: 0.05, far: 200 }} gl={{ antialias: true, alpha: true }}
+    <Canvas dpr={[1, 2]} camera={{ position: [0, 11, 17], fov: 38, near: 0.05, far: 200 }} gl={{ antialias: true, alpha: true, powerPreference: 'default' }}
+      onCreated={({ gl }) => {
+        gl.domElement.addEventListener('webglcontextlost', e => e.preventDefault(), false);
+      }}
       raycaster={{ params: { Points: { threshold: 0.02 }, Line: { threshold: 0.02 } } as never }}>
       <fog attach="fog" args={['#06080c', 14, 34]} />
       <Environment resolution={256}>

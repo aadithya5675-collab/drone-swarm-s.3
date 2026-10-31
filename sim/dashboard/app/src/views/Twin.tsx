@@ -232,7 +232,14 @@ export default function Twin() {
         </>} bodyClass="pb-3">
         <div className="relative h-full min-h-[520px] overflow-hidden rounded-xl border border-line bg-[#020305]">
           {E.T && (
-            <Canvas camera={{ fov: 42, near: 1, far: 9000, position: toV(CENTER.x + 650, CENTER.y - 900, 700).toArray() }} dpr={[1, 2]} onPointerMissed={() => select(null)}>
+            <Canvas
+              camera={{ fov: 42, near: 1, far: 9000, position: toV(CENTER.x + 650, CENTER.y - 900, 700).toArray() }}
+              dpr={[1, 2]}
+              gl={{ antialias: true, alpha: true, powerPreference: 'default' }}
+              onCreated={({ gl }) => {
+                gl.domElement.addEventListener('webglcontextlost', e => e.preventDefault(), false);
+              }}
+              onPointerMissed={() => select(null)}>
               <color attach="background" args={['#020305']} />
               <fog attach="fog" args={['#020305', 1400, 3200]} />
               <Terrain /><LidarCloud /><Corridor />{routes && <Routes />}<Swarm labels={labels} />
