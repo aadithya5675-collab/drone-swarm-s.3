@@ -1,0 +1,11 @@
+{
+  "framework": null,
+  "installCommand": "npm ci",
+  "buildCommand": "npx tsc -b && npx vite build --outDir dist --emptyOutDir && cp -r ../replays ../terrain.json ../valley.json dist/",
+  "outputDirectory": "dist",
+  "rewrites": [{ "source": "/", "destination": "/story.html" }],
+  "headers": [
+    { "source": "/replays/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600" }] },
+    { "source": "/videos/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600" }] }
+  ]
+}

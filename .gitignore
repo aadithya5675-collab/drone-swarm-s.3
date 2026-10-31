@@ -22,3 +22,6 @@ sim/config/gui_story.config
 Thumbs.db
 Desktop.ini
 .DS_Store
+
+# Vercel build output (sim/dashboard/app/vercel.json)
+sim/dashboard/app/dist/
