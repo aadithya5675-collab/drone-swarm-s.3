@@ -17,6 +17,7 @@ async function call(path: string, method = 'GET', body?: unknown, ms = 2500): Pr
 }
 
 const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
+let starting = false;  // one start sequence at a time, however often the button or panel is used
 
 export function LivePanel() {
   const open = useUI(s => s.live), setOpen = useUI(s => s.setLive);
@@ -34,10 +35,16 @@ export function LivePanel() {
 
   const enter = () => { E.startLive(); setOpen(false); useUI.getState().go('twin'); };
   const start = async () => {
+    if (starting) return;
+    starting = true;
+    try { await run(); } finally { starting = false; }
+  };
+  const run = async () => {
     setSt('starting');
     if (!status?.swarm_ready) {
-      if (!status?.running) { say('Starting Gazebo, PX4 and the swarm…'); await call('/start', 'POST', {}, 8000); }
-      else say('Gazebo is up. Waiting for the swarm to join the mesh…');
+      // a half-started camp (Gazebo up, drones gone) never becomes ready, so always start clean
+      say('Starting Gazebo, PX4 and the swarm…');
+      await call('/start', 'POST', {}, 8000);
       // the camp takes a few minutes on a laptop: Gazebo, then each drone's PX4 and agent, then the mesh
       const t0 = performance.now();
       let ready = false;
