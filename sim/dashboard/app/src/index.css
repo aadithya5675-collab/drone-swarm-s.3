@@ -4,17 +4,21 @@
 
 /* ---- design tokens (locked in Figma: "ResQMesh Mission Control — design lock") ---- */
 :root {
-  --bg: #06080c;
-  --bg-2: #0a0d13;
-  --glass: rgb(255 255 255 / 0.045);
-  --glass-hi: rgb(255 255 255 / 0.075);
-  --line: rgb(255 255 255 / 0.09);
-  --line-2: rgb(255 255 255 / 0.05);
-  --fg: #e7eaf0;
+  --bg: #05070a;
+  --bg-2: #080c12;
+  --bg-elevated: #0d121c;
+  --glass: rgb(255 255 255 / 0.035);
+  --glass-hi: rgb(255 255 255 / 0.065);
+  --glass-hover: rgb(255 255 255 / 0.055);
+  --line: rgb(255 255 255 / 0.08);
+  --line-hi: rgb(255 255 255 / 0.14);
+  --line-2: rgb(255 255 255 / 0.045);
+  --fg: #e2e6f0;
   --fg-hi: #f4f6fa;
-  --muted: rgb(231 234 240 / 0.56);
-  --faint: rgb(231 234 240 / 0.36);
+  --muted: rgb(226 230 240 / 0.58);
+  --faint: rgb(226 230 240 / 0.36);
   --accent: #5eead4;
+  --accent-glow: rgb(94 234 212 / 0.18);
   --alive: #4ade80;
   --dead: #a1a1aa;
   --cand: #fbbf24;
@@ -23,12 +27,12 @@
   --mapper: #7dd3fc;
   --relay: #c4b5fd;
   --camp: #fb7185;
-  --radius: 16px;
+  --radius: 14px;
 }
 
 @theme inline {
-  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, monospace;
   --color-bg: var(--bg);
   --color-fg: var(--fg);
   --color-hi: var(--fg-hi);
@@ -49,34 +53,101 @@
 html, body, #root { height: 100%; }
 body {
   margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-sans);
-  font-size: 14px; line-height: 1.45; -webkit-font-smoothing: antialiased; font-feature-settings: 'ss01', 'cv11';
+  font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; font-feature-settings: 'ss01', 'cv11';
 }
-::selection { background: rgb(94 234 212 / 0.25); }
-* { scrollbar-width: thin; scrollbar-color: rgb(255 255 255 / 0.14) transparent; }
-.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+::selection { background: rgb(94 234 212 / 0.22); color: #fff; }
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(255 255 255 / 0.12) transparent;
+}
+*::-webkit-scrollbar { width: 5px; height: 5px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb { background: rgb(255 255 255 / 0.12); border-radius: 9999px; }
+*::-webkit-scrollbar-thumb:hover { background: rgb(255 255 255 / 0.24); }
+
+.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; letter-spacing: -0.015em; }
 
 /* calm atmosphere: two faint glows and the topographic contour motif */
 .atmo { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-.atmo::before, .atmo::after { content: ''; position: absolute; border-radius: 50%; filter: blur(120px); }
-.atmo::before { width: 70vw; height: 60vh; left: -18vw; top: -24vh; background: rgb(45 212 191 / 0.09); }
-.atmo::after { width: 60vw; height: 55vh; right: -14vw; bottom: -22vh; background: rgb(245 158 11 / 0.05); }
+.atmo::before, .atmo::after { content: ''; position: absolute; border-radius: 50%; filter: blur(140px); }
+.atmo::before { width: 75vw; height: 65vh; left: -20vw; top: -25vh; background: radial-gradient(circle, rgb(45 212 191 / 0.08) 0%, transparent 70%); }
+.atmo::after { width: 65vw; height: 60vh; right: -15vw; bottom: -24vh; background: radial-gradient(circle, rgb(245 158 11 / 0.045) 0%, transparent 70%); }
 
-/* restrained glass */
+/* restrained aerospace glass */
 .glass {
-  background: var(--glass); border: 1px solid var(--line); border-radius: var(--radius);
-  backdrop-filter: blur(22px) saturate(120%); -webkit-backdrop-filter: blur(22px) saturate(120%);
-  box-shadow: 0 1px 0 rgb(255 255 255 / 0.04) inset, 0 24px 48px -24px rgb(0 0 0 / 0.6);
+  background: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  backdrop-filter: blur(20px) saturate(130%);
+  -webkit-backdrop-filter: blur(20px) saturate(130%);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.05) inset, 0 16px 36px -12px rgb(0 0 0 / 0.65), 0 0 0 1px rgb(0 0 0 / 0.35);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
-.glass-hi { background: var(--glass-hi); }
-.eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.glass:hover {
+  border-color: var(--line-hi);
+}
+.glass-hi {
+  background: var(--glass-hi);
+  border-color: var(--line-hi);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.08) inset, 0 20px 40px -12px rgb(0 0 0 / 0.7);
+}
+
+.eyebrow {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
 .hairline { border-color: var(--line-2); }
+
+/* custom range input for replay timeline */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgb(255 255 255 / 0.12);
+  height: 4px;
+  border-radius: 9999px;
+  outline: none;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px rgb(94 234 212 / 0.55), 0 0 0 2px #06080c;
+  cursor: grab;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+  box-shadow: 0 0 14px rgb(94 234 212 / 0.8), 0 0 0 2px #06080c;
+}
+input[type="range"]::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  transform: scale(1.1);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent);
+  box-shadow: 0 0 10px rgb(94 234 212 / 0.55), 0 0 0 2px #06080c;
+  cursor: grab;
+}
 
 /* explain mode: numbered cards on every panel */
 [data-explain] { position: relative; }
 body.explain [data-explain]::after {
-  content: attr(data-explain); position: absolute; inset: auto 10px 10px 10px; z-index: 30; padding: 10px 12px; border-radius: 12px;
-  background: rgb(6 8 12 / 0.92); border: 1px solid rgb(94 234 212 / 0.35); color: var(--fg); font-size: 12.5px; line-height: 1.45;
-  backdrop-filter: blur(10px); pointer-events: none;
+  content: attr(data-explain); position: absolute; inset: auto 10px 10px 10px; z-index: 30; padding: 10px 14px; border-radius: 10px;
+  background: rgb(6 8 12 / 0.94); border: 1px solid rgb(94 234 212 / 0.35); color: var(--fg); font-size: 12.5px; line-height: 1.45;
+  box-shadow: 0 12px 28px -6px rgb(0 0 0 / 0.8);
+  backdrop-filter: blur(12px); pointer-events: none;
 }
 
 @keyframes ping-ring { from { transform: scale(0.6); opacity: 0.9 } to { transform: scale(2.4); opacity: 0 } }

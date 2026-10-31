@@ -8,7 +8,7 @@ import type { OrbitControls as OC } from 'three-stdlib';
 import { E, COND_C, ROLE_C, role, short, clockStr } from '../lib/engine';
 import { useEngine, useUI, reducedMotion } from '../lib/store';
 import { corridorEdges, nodePos, activity } from '../lib/geo';
-import { Panel, Segmented, Chip } from '../components/ui';
+import { Panel, Segmented, Chip, cn } from '../components/ui';
 import { FixChip } from '../components/Ops';
 
 const toV = (x: number, y: number, z: number) => new THREE.Vector3(x, z, -y);   // ENU -> three (Y up)
@@ -167,16 +167,51 @@ function Timeline() {
   const marks = [{ l: 'Alert', t: 0 }, ...MARKS.map(([l, re]) => ({ l, t: evs.find(e => e.t != null && re.test(e.text))?.t ?? null })).filter(m => m.t != null)] as { l: string; t: number }[];
   const end = Math.max(R ? R.dur - (R.tAlert ?? 0) : 0, now, ...marks.map(m => m.t), 60);
   const go = (t: number) => { if (!R) return; const p = R.playing; E.seek((R.tAlert ?? 0) + t); R.playing = p; };
+
+  const marksWithTiers = useMemo(() => {
+    const sorted = [...marks].sort((a, b) => a.t - b.t);
+    const tiers = ['-top-6', 'top-5', '-top-11', 'top-10'];
+    const assigned: { l: string; t: number; tier: string }[] = [];
+    const lastTimeOnTier: Record<number, number> = { 0: -999, 1: -999, 2: -999, 3: -999 };
+    for (let i = 0; i < sorted.length; i++) {
+      const m = sorted[i];
+      let chosenTier = -1;
+      const preferred = (i % 2 === 0) ? [0, 2, 1, 3] : [1, 3, 0, 2];
+      for (const tIdx of preferred) {
+        if (m.t - lastTimeOnTier[tIdx] >= 80) {
+          chosenTier = tIdx;
+          break;
+        }
+      }
+      if (chosenTier === -1) {
+        chosenTier = preferred.reduce((best, curr) => (m.t - lastTimeOnTier[curr] > m.t - lastTimeOnTier[best] ? curr : best), preferred[0]);
+      }
+      lastTimeOnTier[chosenTier] = m.t;
+      assigned.push({ ...m, tier: tiers[chosenTier] });
+    }
+    return assigned;
+  }, [marks]);
+
   return (
-    <div className="glass px-5 pt-3 pb-4">
-      <div className="flex items-center justify-between"><span className="text-[13px] font-medium text-hi">Mission timeline</span><span className="text-[11px] text-faint">{R ? 'click a moment to jump to it' : 'key moments as they happen'}</span></div>
-      <div className="relative mt-7 h-8">
-        <div className="absolute inset-x-0 top-3 h-px bg-white/15" />
-        <div className="absolute top-3 left-0 h-px bg-accent" style={{ width: Math.min(100, (now / end) * 100) + '%' }} />
-        {marks.map((m, i) => (
-          <button key={m.l} onClick={() => go(m.t)} className="group absolute -translate-x-1/2" style={{ left: (m.t / end) * 100 + '%' }} title={m.l + ' · T+ ' + clockStr(m.t)}>
-            <span className={'block h-2.5 w-2.5 translate-y-[7px] rounded-full border ' + (m.t <= now ? 'border-accent bg-accent' : 'border-white/40 bg-bg')} />
-            <span className={'absolute left-1/2 -translate-x-1/2 text-[10.5px] whitespace-nowrap ' + (i % 2 ? 'top-5' : '-top-6') + (m.t <= now ? ' text-fg' : ' text-faint') + ' group-hover:text-hi'}>{m.l} <span className="num text-faint">{clockStr(m.t)}</span></span>
+    <div className="glass px-5 pt-3.5 pb-5">
+      <div className="flex items-center justify-between">
+        <span className="text-[13px] font-medium text-hi">Mission timeline</span>
+        <span className="text-[11px] text-faint">{R ? 'click a moment to jump to it' : 'key moments as they happen'}</span>
+      </div>
+      <div className="relative mt-8 mb-3 h-8">
+        <div className="absolute inset-x-0 top-3.5 h-[2px] rounded-full bg-white/10" />
+        <div className="absolute top-3.5 left-0 h-[2px] rounded-full bg-accent shadow-[0_0_8px_rgba(94,234,212,0.6)]" style={{ width: Math.min(100, (now / end) * 100) + '%' }} />
+        {marksWithTiers.map(m => (
+          <button key={m.l} onClick={() => go(m.t)} className="group absolute -translate-x-1/2 z-10 hover:z-30 cursor-pointer" style={{ left: (m.t / end) * 100 + '%' }} title={m.l + ' · T+ ' + clockStr(m.t)}>
+            <span className={cn('block h-3 w-3 translate-y-[8px] rounded-full border-2 transition-transform duration-150 group-hover:scale-125', m.t <= now ? 'border-accent bg-accent shadow-[0_0_6px_rgba(94,234,212,0.8)]' : 'border-white/40 bg-[#06080c]')} />
+            <span className={cn(
+              'absolute left-1/2 -translate-x-1/2 rounded-md border border-white/10 bg-[#06080c]/90 px-2 py-0.5 text-[10.5px] font-medium whitespace-nowrap shadow-md backdrop-blur-md transition-all duration-150',
+              m.tier,
+              m.t <= now ? 'text-fg border-accent/30' : 'text-faint',
+              'group-hover:scale-105 group-hover:border-accent group-hover:text-hi'
+            )}>
+              {m.l} <span className="num font-mono text-[10px] text-accent/80">{clockStr(m.t)}</span>
+            </span>
           </button>
         ))}
       </div>
@@ -290,12 +325,12 @@ function AglBars() {
   const F = Object.entries(E.S.fleet).filter(([n, s]) => !E.isLost(n, s));
   const max = Math.max(100, ...F.map(([, s]) => s.agl));
   return (
-    <div className="flex h-full min-h-40 items-end gap-2">
+    <div className="flex h-full min-h-40 items-end gap-2 px-1 pt-3 pb-1">
       {F.map(([n, s]) => (
-        <div key={n} className="flex flex-1 flex-col items-center gap-1">
-          <span className="num text-[10px] text-muted">{Math.round(s.agl)}</span>
-          <div className="w-full rounded-t" style={{ height: Math.max(2, (s.agl / max) * 150), background: ROLE_C[role(n)], opacity: 0.75 }} />
-          <span className="num text-[10px] text-faint">{short(n)}</span>
+        <div key={n} className="group flex flex-1 flex-col items-center gap-1.5 transition-all">
+          <span className="num text-[10.5px] font-medium text-muted transition-colors group-hover:text-hi">{Math.round(s.agl)}m</span>
+          <div className="relative w-full rounded-t transition-all duration-200 group-hover:brightness-125" style={{ height: Math.max(4, (s.agl / max) * 150), background: ROLE_C[role(n)], opacity: 0.85, boxShadow: `0 0 10px ${ROLE_C[role(n)]}33` }} />
+          <span className="num text-[10.5px] font-mono text-faint transition-colors group-hover:text-fg">{short(n)}</span>
         </div>
       ))}
     </div>

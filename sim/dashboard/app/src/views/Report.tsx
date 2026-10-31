@@ -57,24 +57,46 @@ function Final() {
         </p>
       </div>
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-6">
-        {stats.map(([l, v, s]) => (
-          <div key={l} className="glass px-4 py-3.5">
-            <div className="text-[11px] tracking-wide text-faint uppercase">{l}</div>
-            <div className="num mt-1.5 text-[26px] leading-none text-hi">{v}</div>
-            <div className="mt-1.5 text-[11.5px] text-muted">{s}</div>
-          </div>
-        ))}
+        {stats.map(([l, v, s], idx) => {
+          const accents = ['var(--alive)', 'var(--accent)', 'var(--scout)', 'var(--cand)', 'var(--danger)', 'var(--relay)'];
+          return (
+            <div key={l} className="glass group relative overflow-hidden px-4.5 py-4 transition-all duration-200 hover:border-white/20">
+              <div className="absolute top-0 inset-x-0 h-0.5 opacity-70" style={{ background: accents[idx % accents.length] }} />
+              <div className="text-[11px] font-mono tracking-wider text-faint uppercase">{l}</div>
+              <div className="num mt-2 text-[28px] font-semibold tracking-tight text-hi">{v}</div>
+              <div className="mt-1 text-[11.5px] text-muted">{s}</div>
+            </div>
+          );
+        })}
       </div>
       <Panel title="People" sub="where the ground team should go" bodyClass="overflow-x-auto">
-        <table className="num w-full text-[12.5px]"><tbody>
-          {P.map(p => <tr key={p.id} className="border-t border-white/[.05]">
-            <td className="py-2 text-fg">{p.id.replace('PERSON-', 'P')}</td>
-            <td style={{ color: COND_C[p.condition] }}>{p.condition === 'ALIVE' ? 'alive' : 'likely deceased'}</td>
-            <td className="text-muted">{p.lat.toFixed(6)} N, {p.lon.toFixed(6)} E</td>
-            <td className="text-muted">found T+ {clockStr(E.foundAt(p))}</td>
-            <td className="text-right"><FixChip p={p} /></td>
-          </tr>)}
-        </tbody></table>
+        <table className="num w-full text-[12.5px]">
+          <thead>
+            <tr className="border-b border-white/[.08] text-left text-[11px] font-mono tracking-wider text-faint uppercase">
+              <th className="py-2.5 px-3 font-normal">Survivor ID</th>
+              <th className="font-normal">Status</th>
+              <th className="font-normal">GPS Coordinates</th>
+              <th className="font-normal">Detection Time</th>
+              <th className="text-right font-normal pr-3">Triangulation Fix</th>
+            </tr>
+          </thead>
+          <tbody>
+            {P.map(p => (
+              <tr key={p.id} className="border-b border-white/[.04] transition-colors hover:bg-white/[.025]">
+                <td className="py-2.5 px-3 font-medium text-fg">{p.id.replace('PERSON-', 'P')}</td>
+                <td>
+                  <span className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-medium" style={{ background: 'color-mix(in srgb, ' + COND_C[p.condition] + ' 15%, transparent)', color: COND_C[p.condition] }}>
+                    <span className="h-1.5 w-1.5 rounded-full" style={{ background: COND_C[p.condition] }} />
+                    {p.condition === 'ALIVE' ? 'alive' : 'likely deceased'}
+                  </span>
+                </td>
+                <td className="font-mono text-muted">{p.lat.toFixed(6)} N, {p.lon.toFixed(6)} E</td>
+                <td className="text-muted">found <span className="font-mono text-fg">T+ {clockStr(E.foundAt(p))}</span></td>
+                <td className="text-right pr-3"><FixChip p={p} /></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </Panel>
       <Recordings />
     </div>
@@ -90,17 +112,20 @@ function Recordings() {
   }, []);
   return (
     <Panel title="Recordings from the simulation" sub="the key moments of the run, in order">
-      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {VIDEOS.map((v, i) => (
-          <figure key={v.file} className="overflow-hidden rounded-xl border border-line bg-black/30">
-            <div className="relative aspect-video bg-black">
+          <figure key={v.file} className="group overflow-hidden rounded-xl border border-line bg-black/40 transition-all duration-200 hover:border-white/20 hover:shadow-lg">
+            <div className="relative aspect-video bg-black/80">
               {have[v.file]
                 ? <video src={'videos/' + v.file} controls preload="metadata" playsInline className="h-full w-full object-cover" />
-                : <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-faint"><Film size={20} /><span className="text-xs">{have[v.file] === false ? 'recording pending' : 'loading…'}</span></div>}
+                : <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-faint"><Film size={22} /><span className="text-xs font-mono">{have[v.file] === false ? 'recording pending' : 'loading…'}</span></div>}
             </div>
-            <figcaption className="px-3.5 py-3">
-              <div className="flex items-baseline gap-2"><span className="num text-[11px] text-accent">{String(i + 1).padStart(2, '0')}</span><span className="text-[13.5px] font-medium text-hi">{v.title}</span></div>
-              <p className="mt-1 text-[12px] leading-snug text-muted">{v.caption}</p>
+            <figcaption className="px-4 py-3.5">
+              <div className="flex items-baseline gap-2">
+                <span className="num flex h-5 w-5 items-center justify-center rounded bg-accent/15 text-[10.5px] font-semibold text-accent">{String(i + 1).padStart(2, '0')}</span>
+                <span className="text-[13.5px] font-medium text-hi">{v.title}</span>
+              </div>
+              <p className="mt-1.5 text-[12px] leading-relaxed text-muted">{v.caption}</p>
             </figcaption>
           </figure>
         ))}

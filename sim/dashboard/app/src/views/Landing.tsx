@@ -65,33 +65,41 @@ function Hero() {
   return (
     <section className="relative z-10 mx-auto grid min-h-screen max-w-[1400px] items-center gap-10 px-6 py-16 lg:grid-cols-[1.05fr_1fr] lg:px-10">
       <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.2, 0.7, 0.2, 1] }}>
-        <div className="num text-[13px] tracking-[0.2em] text-camp">AT 2:17 AM · JULY 30, 2024</div>
+        <div className="inline-flex items-center gap-2 rounded-full border border-camp/35 bg-camp/10 px-3 py-1 font-mono text-[11.5px] tracking-[0.2em] text-camp uppercase shadow-[0_0_15px_rgba(251,113,133,0.18)] backdrop-blur-md">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-camp opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-camp" />
+          </span>
+          AT 2:17 AM · JULY 30, 2024
+        </div>
         <h1 className="mt-5 text-[clamp(36px,5vw,68px)] leading-[1.03] font-semibold tracking-[-0.035em] text-hi">
           A hillside above Mundakkai collapsed in the dark.
         </h1>
         <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-muted">
-          The debris flow buried <span className="text-fg">Mundakkai</span> and <span className="text-fg">Chooralmala</span> in Wayanad, Kerala,
+          The debris flow buried <span className="text-fg font-medium">Mundakkai</span> and <span className="text-fg font-medium">Chooralmala</span> in Wayanad, Kerala,
           and washed away the only bridge. Rescuers searched by hand, in deep mud, with no phone network and no map of the new ground.
         </p>
-        <div className="mt-8 rounded-2xl border border-camp/25 bg-camp/[.06] p-5">
-          <div className="text-[12px] font-medium tracking-wide text-camp uppercase">The problem</div>
+        <div className="relative mt-8 overflow-hidden rounded-2xl border border-camp/30 bg-gradient-to-r from-camp/[.12] via-camp/[.04] to-transparent p-5 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.3)] before:absolute before:inset-y-0 before:left-0 before:w-1 before:bg-camp">
+          <div className="text-[11.5px] font-semibold tracking-widest text-camp uppercase">The problem</div>
           <p className="mt-2 text-[19px] leading-snug font-medium text-hi">
             Survivors buried in a disaster zone have hours, not days — and today nobody can find them fast enough, or tell the camp where they are.
           </p>
         </div>
         <div className="mt-8">
-          <div className="text-[12px] text-muted">Chance a trapped person is still alive</div>
+          <div className="text-[12px] font-medium tracking-wide text-muted uppercase">Chance a trapped person is still alive</div>
           <div className="mt-3 grid max-w-xl grid-cols-3 gap-3">
             {SURVIVAL.map((s, i) => (
-              <div key={s.d} className="glass px-4 py-3">
-                <div className="num text-[34px] leading-none font-semibold" style={{ color: i === 0 ? 'var(--alive)' : i === 1 ? 'var(--cand)' : 'var(--danger)' }}>{s.v}%</div>
-                <div className="mt-2 h-1 overflow-hidden rounded-full bg-white/10"><motion.div className="h-full rounded-full" style={{ background: i === 0 ? 'var(--alive)' : i === 1 ? 'var(--cand)' : 'var(--danger)' }}
-                  initial={{ width: 0 }} animate={{ width: s.v + '%' }} transition={{ delay: 0.6 + i * 0.2, duration: 1 }} /></div>
-                <div className="mt-2 text-xs text-muted">{s.d}</div>
+              <div key={s.d} className="glass group relative overflow-hidden px-4 py-3.5 transition-all duration-200 hover:border-white/20">
+                <div className="num text-[34px] leading-none font-semibold tracking-tight" style={{ color: i === 0 ? 'var(--alive)' : i === 1 ? 'var(--cand)' : 'var(--danger)' }}>{s.v}%</div>
+                <div className="mt-2.5 h-1.5 overflow-hidden rounded-full bg-white/10">
+                  <motion.div className="h-full rounded-full" style={{ background: i === 0 ? 'var(--alive)' : i === 1 ? 'var(--cand)' : 'var(--danger)' }}
+                    initial={{ width: 0 }} animate={{ width: s.v + '%' }} transition={{ delay: 0.6 + i * 0.2, duration: 1 }} />
+                </div>
+                <div className="mt-2 text-xs font-medium text-muted">{s.d}</div>
               </div>
             ))}
           </div>
-          <div className="mt-2 text-[11px] text-faint">Reported survival of trapped victims, 1990 Philippines earthquake — from our Phase 1 research.</div>
+          <div className="mt-2.5 text-[11px] text-faint">Reported survival of trapped victims, 1990 Philippines earthquake — from our Phase 1 research.</div>
         </div>
       </motion.div>
       <HeroValley />
@@ -138,9 +146,17 @@ function HeroValley() {
     return () => cancelAnimationFrame(raf);
   }, [E.T]); // eslint-disable-line react-hooks/exhaustive-deps
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 0.2 }} className="relative aspect-[4/3.4] w-full">
-      <canvas ref={ref} className="absolute inset-0 h-full w-full" aria-label="The Mundakkai valley as a lidar point field, with the debris corridor outlined" />
-      <div className="absolute right-2 bottom-2 text-right text-[11px] leading-snug text-faint">real SRTM elevation, 10 m grid<br /><span className="text-accent/80">— debris corridor</span></div>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 0.2 }} className="relative aspect-[4/3.4] w-full rounded-2xl border border-white/10 bg-black/40 p-2 shadow-2xl backdrop-blur-sm">
+      <div className="absolute top-2.5 left-3.5 z-10 flex items-center gap-2 text-[10.5px] font-mono tracking-wider text-muted/70 uppercase">
+        <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+        Corridor Lidar Topology · 11°33'N 76°08'E
+      </div>
+      <canvas ref={ref} className="h-full w-full" aria-label="The Mundakkai valley as a lidar point field, with the debris corridor outlined" />
+      <div className="absolute right-3.5 bottom-2.5 z-10 text-right font-mono text-[11px] leading-snug text-faint">real SRTM elevation · 10 m grid<br /><span className="text-accent/90">— debris corridor</span></div>
+      <div className="pointer-events-none absolute top-1.5 left-1.5 h-3 w-3 border-t-2 border-l-2 border-accent/40" />
+      <div className="pointer-events-none absolute top-1.5 right-1.5 h-3 w-3 border-t-2 border-r-2 border-accent/40" />
+      <div className="pointer-events-none absolute bottom-1.5 left-1.5 h-3 w-3 border-b-2 border-l-2 border-accent/40" />
+      <div className="pointer-events-none absolute bottom-1.5 right-1.5 h-3 w-3 border-b-2 border-r-2 border-accent/40" />
     </motion.div>
   );
 }
@@ -156,11 +172,13 @@ function SwarmScroll({ scroller, onExplode }: { scroller: React.RefObject<HTMLDi
       <div className="sticky top-0 h-screen overflow-hidden">
         <div className="absolute inset-0">{near && <Suspense fallback={null}><SwarmStage progress={scrollYProgress} onExplode={onExplode} /></Suspense>}</div>
         <motion.div style={{ opacity: title }} className="pointer-events-none absolute top-10 left-1/2 w-full max-w-3xl -translate-x-1/2 px-6 text-center">
-          <div className="eyebrow">Our answer</div>
-          <h2 className="mt-3 text-[clamp(30px,4vw,54px)] font-semibold tracking-tight text-hi">ResQMesh: a swarm that searches by itself.</h2>
-          <p className="mx-auto mt-3 max-w-xl text-[15px] text-muted">Seven drones, three jobs, one mesh. When the towers fall, the sky becomes the network.</p>
+          <div className="rounded-3xl bg-black/60 px-6 py-4 backdrop-blur-md border border-white/[0.08] shadow-2xl">
+            <div className="eyebrow">Our answer</div>
+            <h2 className="mt-3 text-[clamp(30px,4vw,54px)] font-semibold tracking-tight text-hi drop-shadow-md">ResQMesh: a swarm that searches by itself.</h2>
+            <p className="mx-auto mt-3 max-w-xl text-[15px] text-muted drop-shadow">Seven drones, three jobs, one mesh. When the towers fall, the sky becomes the network.</p>
+          </div>
         </motion.div>
-        <motion.div style={{ opacity: hint }} className="pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2 rounded-full border border-white/10 bg-black/40 px-4 py-2 text-xs text-muted backdrop-blur-md">
+        <motion.div style={{ opacity: hint }} className="pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2 rounded-full border border-white/15 bg-black/70 px-5 py-2.5 text-xs text-muted backdrop-blur-md shadow-xl">
           drag to turn the swarm 360° · double-click a drone to see how it is built
         </motion.div>
       </div>
@@ -171,27 +189,33 @@ function SwarmScroll({ scroller, onExplode }: { scroller: React.RefObject<HTMLDi
 function Roles() {
   return (
     <section className="relative z-10 mx-auto max-w-[1400px] px-6 py-20 lg:px-10">
-      <div className="grid gap-3 md:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-3">
         {ROLES.map((r, i) => (
-          <motion.div key={r.id} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-80px' }} transition={{ delay: i * 0.08 }} className="glass p-6">
+          <motion.div key={r.id} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-80px' }} transition={{ delay: i * 0.08 }} className="glass group relative overflow-hidden p-6 transition-all duration-200 hover:border-white/20">
+            <div className="absolute top-0 inset-x-0 h-1 opacity-80" style={{ background: r.color }} />
             <div className="flex items-center justify-between">
-              <span className="text-lg font-semibold text-hi">{r.name}</span>
-              <span className="num rounded-md px-2 py-1 text-[11px]" style={{ background: 'color-mix(in srgb, ' + r.color + ' 14%, transparent)', color: r.color }}>{r.n}</span>
+              <span className="text-lg font-semibold text-hi flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full" style={{ background: r.color }} />
+                {r.name}
+              </span>
+              <span className="num rounded-md px-2.5 py-1 text-[11px] font-medium border border-white/5" style={{ background: 'color-mix(in srgb, ' + r.color + ' 16%, transparent)', color: r.color }}>{r.n}</span>
             </div>
-            <p className="mt-3 text-[14px] leading-relaxed text-muted">{r.job}</p>
+            <p className="mt-3.5 text-[14px] leading-relaxed text-muted">{r.job}</p>
           </motion.div>
         ))}
       </div>
       <div className="mt-14">
         <div className="eyebrow">Why it is different</div>
         <h3 className="mt-3 text-[clamp(24px,2.8vw,36px)] font-semibold tracking-tight text-hi">Conventional search vs ResQMesh</h3>
-        <div className="glass mt-6 overflow-hidden">
-          <div className="grid grid-cols-[1fr_1.2fr_1.2fr] border-b border-white/[.07] px-5 py-3 text-[11px] tracking-wide text-faint uppercase">
-            <span /><span>Conventional</span><span className="text-accent">ResQMesh</span>
+        <div className="glass mt-6 overflow-hidden rounded-2xl border border-white/10 shadow-xl">
+          <div className="grid grid-cols-[1fr_1.2fr_1.2fr] border-b border-white/[.08] bg-white/[.02] px-6 py-3.5 text-[11px] font-mono tracking-wider text-faint uppercase">
+            <span /><span>Conventional</span><span className="text-accent flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-accent" />ResQMesh</span>
           </div>
-          {COMPARE.map(([a, b, c]) => (
-            <div key={a} className="grid grid-cols-[1fr_1.2fr_1.2fr] gap-3 border-b border-white/[.04] px-5 py-3 text-[13.5px] last:border-0">
-              <span className="text-muted">{a}</span><span className="text-faint">{b}</span><span className="text-hi">{c}</span>
+          {COMPARE.map(([a, b, c], idx) => (
+            <div key={a} className={cn("grid grid-cols-[1fr_1.2fr_1.2fr] items-center gap-4 border-b border-white/[.04] px-6 py-3.5 text-[13.5px] transition-colors hover:bg-white/[.02] last:border-0", idx % 2 === 1 && "bg-white/[0.01]")}>
+              <span className="font-medium text-muted">{a}</span>
+              <span className="text-faint">{b}</span>
+              <span className="font-medium text-hi flex items-center gap-2"><span className="text-accent/80 text-xs">✓</span>{c}</span>
             </div>
           ))}
         </div>
@@ -214,14 +238,14 @@ function Camp() {
               <li key={t} className="flex gap-2.5"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />{t}</li>)}
           </ul>
         </div>
-        <div className="glass relative aspect-[16/10] overflow-hidden">
+        <div className="glass relative aspect-[16/10] overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
           {seen && <Suspense fallback={null}><CampStage /></Suspense>}
-          <div className="pointer-events-none absolute bottom-3 left-4 flex flex-wrap gap-3 text-[11px] text-muted">
-            <span className="flex items-center gap-1.5"><i className="h-2 w-2 rounded-full bg-scout" />Scout</span>
-            <span className="flex items-center gap-1.5"><i className="h-2 w-2 rounded-full bg-mapper" />Mapper</span>
-            <span className="flex items-center gap-1.5"><i className="h-2 w-2 rounded-full bg-relay" />Relay-Anchor</span>
-            <span className="flex items-center gap-1.5"><i className="h-2 w-2 rounded-full bg-camp" />camp tower</span>
-            <span className="flex items-center gap-1.5"><i className="h-2 w-2 rounded-full bg-[#fde047]" />message</span>
+          <div className="pointer-events-none absolute bottom-3.5 left-4 flex flex-wrap gap-2 text-[11px] text-muted">
+            <span className="flex items-center gap-1.5 rounded-md bg-black/70 px-2.5 py-1 backdrop-blur-md border border-white/10"><i className="h-2 w-2 rounded-full bg-scout" />Scout</span>
+            <span className="flex items-center gap-1.5 rounded-md bg-black/70 px-2.5 py-1 backdrop-blur-md border border-white/10"><i className="h-2 w-2 rounded-full bg-mapper" />Mapper</span>
+            <span className="flex items-center gap-1.5 rounded-md bg-black/70 px-2.5 py-1 backdrop-blur-md border border-white/10"><i className="h-2 w-2 rounded-full bg-relay" />Relay-Anchor</span>
+            <span className="flex items-center gap-1.5 rounded-md bg-black/70 px-2.5 py-1 backdrop-blur-md border border-white/10"><i className="h-2 w-2 rounded-full bg-camp" />Camp tower</span>
+            <span className="flex items-center gap-1.5 rounded-md bg-black/70 px-2.5 py-1 backdrop-blur-md border border-white/10"><i className="h-2 w-2 rounded-full bg-[#fde047]" />Message</span>
           </div>
         </div>
       </div>
@@ -242,22 +266,22 @@ function Workflow() {
         <ol className="space-y-1.5">
           {STEPS.map((s, k) => (
             <li key={s.k}>
-              <button onClick={() => { setI(k); setAuto(false); }} className={cn('w-full rounded-xl border px-4 py-3 text-left transition-colors', k === i ? 'border-white/20 bg-white/[.07]' : 'border-transparent hover:bg-white/[.04]')}>
+              <button onClick={() => { setI(k); setAuto(false); }} className={cn('group w-full rounded-xl border px-4 py-3 text-left transition-all duration-200', k === i ? 'border-accent/40 bg-white/[.08] shadow-lg' : 'border-transparent hover:bg-white/[.04]')}>
                 <div className="flex items-baseline gap-3">
-                  <span className={cn('num text-[11px]', k === i ? 'text-accent' : 'text-faint')}>0{k + 1}</span>
-                  <span className={cn('text-sm font-medium', k === i ? 'text-hi' : 'text-muted')}>{s.h}</span>
+                  <span className={cn('num text-[11px] font-semibold', k === i ? 'text-accent' : 'text-faint group-hover:text-muted')}>0{k + 1}</span>
+                  <span className={cn('text-sm font-medium transition-colors', k === i ? 'text-hi' : 'text-muted group-hover:text-fg')}>{s.h}</span>
                 </div>
                 <AnimatePresence initial={false}>
                   {k === i && <motion.p initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden pt-2 pl-[30px] text-[13px] leading-relaxed text-muted">{s.p}</motion.p>}
                 </AnimatePresence>
-                {k === i && auto && inView && <motion.div key={'b' + i} className="mt-3 ml-[30px] h-px bg-accent/60" initial={{ width: 0 }} animate={{ width: 'calc(100% - 30px)' }} transition={{ duration: 6.5, ease: 'linear' }} />}
+                {k === i && auto && inView && <motion.div key={'b' + i} className="mt-3 ml-[30px] h-0.5 rounded-full bg-accent/70 shadow-[0_0_8px_rgba(94,234,212,0.5)]" initial={{ width: 0 }} animate={{ width: 'calc(100% - 30px)' }} transition={{ duration: 6.5, ease: 'linear' }} />}
               </button>
             </li>
           ))}
         </ol>
-        <div className="glass relative min-h-[420px] overflow-hidden">
+        <div className="glass relative min-h-[420px] overflow-hidden rounded-2xl border border-white/10 shadow-xl">
           {E.V && <FlowArt step={i} />}
-          <div className="absolute bottom-3 left-4 text-[11px] text-faint">schematic · real corridor geometry</div>
+          <div className="absolute bottom-3 left-4 text-[11px] font-mono text-faint">schematic · real corridor geometry</div>
         </div>
       </div>
     </section>
@@ -317,9 +341,23 @@ function FlowArt({ step }: { step: number }) {
         </motion.g>}
         {step === 3 && <motion.g key="detect" {...fade}>
           {sectors.map(s => <path key={s.id} d={lawn(s)} fill="none" stroke="#f5b544" strokeOpacity=".2" />)}
-          {pins.map((p, k) => <g key={k}>{pin(p, k, 0.4 + k * 0.7)}
-            <motion.text x={P(p[0], p[1])[0] + 10} y={P(p[0], p[1])[1] + 4} fill={k === dead ? '#a1a1aa' : '#4ade80'} fontSize="11" fontFamily="JetBrains Mono Variable" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 + k * 0.7 }}>
-              {k === dead ? '25.0 °C · likely deceased' : (34 + k * 0.4).toFixed(1) + ' °C · alive'}</motion.text></g>)}
+          {pins.map((p, k) => {
+            const pt = P(p[0], p[1]);
+            const label = k === dead ? '25.0 °C · likely deceased' : (34 + k * 0.4).toFixed(1) + ' °C · alive';
+            const yOff = k % 2 === 0 ? -12 : 16;
+            const xOff = k % 2 === 0 ? 8 : -8;
+            return (
+              <g key={k}>
+                {pin(p, k, 0.4 + k * 0.7)}
+                <motion.g initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 + k * 0.7 }}>
+                  <rect x={pt[0] + xOff - 4} y={pt[1] + yOff - 10} width={label.length * 6.6 + 8} height="15" rx="3" fill="#06080c" fillOpacity="0.88" stroke={k === dead ? '#71717a' : '#4ade80'} strokeOpacity="0.4" strokeWidth="0.8" />
+                  <text x={pt[0] + xOff} y={pt[1] + yOff + 1} fill={k === dead ? '#a1a1aa' : '#4ade80'} fontSize="10.5" fontFamily="JetBrains Mono Variable" fontWeight="500">
+                    {label}
+                  </text>
+                </motion.g>
+              </g>
+            );
+          })}
         </motion.g>}
         {step === 4 && <motion.g key="locate" {...fade}>
           {pins.map((p, k) => k === 0 ? null : <circle key={k} cx={P(p[0], p[1])[0]} cy={P(p[0], p[1])[1]} r="4" fill={k === dead ? '#a1a1aa' : '#4ade80'} fillOpacity=".5" />)}
@@ -354,18 +392,28 @@ function SeeItRun() {
     <section className="relative z-10 mx-auto max-w-[1400px] px-6 pt-10 pb-20 lg:px-10">
       <div className="eyebrow">See it run</div>
       <h3 className="mt-3 text-[clamp(28px,3.4vw,44px)] font-semibold tracking-tight text-hi">Watch the swarm work.</h3>
-      <div className="mt-8 grid gap-3 md:grid-cols-2">
-        <button onClick={() => setLive(true)} className="glass group flex flex-col items-start gap-4 p-7 text-left transition-colors hover:bg-white/[.07]">
-          <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-alive/10 text-alive"><Radio size={20} /></span>
-          <span><span className="block text-xl font-semibold text-hi">Live</span>
-            <span className="mt-1 block text-[14px] text-muted">Starts the full Gazebo simulation on this machine and streams the swarm’s readings here as they happen.</span></span>
-          <span className="text-xs text-accent group-hover:underline">scan this device →</span>
+      <div className="mt-8 grid gap-4 md:grid-cols-2">
+        <button onClick={() => setLive(true)} className="glass group relative overflow-hidden flex flex-col items-start gap-4 p-7 text-left transition-all duration-300 hover:border-alive/30 hover:bg-white/[.06] hover:shadow-[0_10px_30px_rgba(0,0,0,0.4)]">
+          <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-alive/60 via-alive/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-alive/10 text-alive border border-alive/20 shadow-[0_0_15px_rgba(74,222,128,0.15)]"><Radio size={22} /></span>
+          <span>
+            <span className="block text-xl font-semibold text-hi">Live</span>
+            <span className="mt-1.5 block text-[14px] leading-relaxed text-muted">Starts the full Gazebo simulation on this machine and streams the swarm’s readings here as they happen.</span>
+          </span>
+          <span className="inline-flex items-center gap-1.5 text-xs font-medium text-alive group-hover:underline">
+            scan this device <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+          </span>
         </button>
-        <button onClick={async () => { setBusy(true); await openBestReplay(); setBusy(false); }} className="glass group flex flex-col items-start gap-4 p-7 text-left transition-colors hover:bg-white/[.07]">
-          <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent/10 text-accent"><Film size={20} /></span>
-          <span><span className="block text-xl font-semibold text-hi">Pre-recorded</span>
-            <span className="mt-1 block text-[14px] text-muted">A recorded run of the mission: landslide, search, a Scout and a Mapper lost and recovered from, replayed exactly as the camp saw it.</span></span>
-          <span className="text-xs text-accent group-hover:underline">{busy ? 'loading…' : 'play the mission →'}</span>
+        <button onClick={async () => { setBusy(true); await openBestReplay(); setBusy(false); }} className="glass group relative overflow-hidden flex flex-col items-start gap-4 p-7 text-left transition-all duration-300 hover:border-accent/30 hover:bg-white/[.06] hover:shadow-[0_10px_30px_rgba(0,0,0,0.4)]">
+          <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-accent/60 via-accent/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent border border-accent/20 shadow-[0_0_15px_rgba(94,234,212,0.15)]"><Film size={22} /></span>
+          <span>
+            <span className="block text-xl font-semibold text-hi">Pre-recorded</span>
+            <span className="mt-1.5 block text-[14px] leading-relaxed text-muted">A recorded run of the mission: landslide, search, a Scout and a Mapper lost and recovered from, replayed exactly as the camp saw it.</span>
+          </span>
+          <span className="inline-flex items-center gap-1.5 text-xs font-medium text-accent group-hover:underline">
+            {busy ? 'loading…' : 'play the mission'} <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+          </span>
         </button>
       </div>
     </section>

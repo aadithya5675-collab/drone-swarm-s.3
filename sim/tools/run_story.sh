@@ -28,8 +28,8 @@ for N in $(python3 -c "import yaml; print(' '.join(d['name'] for d in yaml.safe_
   bash "$SIM/tools/launch_drone.sh" $N; sleep 4
 done
 echo "[5/5] waiting for the swarm to report in over the mesh"
-for i in $(seq 90); do
-  n=$(timeout 3 ros2 topic echo --once /base/fleet std_msgs/msg/String 2>/dev/null | grep -o 'state' | wc -l)
+for i in $(seq 30); do
+  n=$(timeout 12 ros2 topic echo --once /base/fleet std_msgs/msg/String 2>/dev/null | grep -o 'state' | wc -l)
   [ "${n:-0}" -ge 5 ] && break; sleep 2
 done
 echo

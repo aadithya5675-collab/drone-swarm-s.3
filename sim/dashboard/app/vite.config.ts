@@ -18,7 +18,7 @@ function dashData(): Plugin {
     configureServer(s) {
       s.middlewares.use((req, res, next) => {
         const u = decodeURIComponent((req.url || '').split('?')[0]);
-        if (/^\/(replays\/|terrain\.json|valley\.json|valley\.jpg)/.test(u)) {
+        if (/^\/(replays\/|models\/|videos\/|terrain\.json|valley\.json)/.test(u)) {
           const f = path.join(DASH, u);
           if (fs.existsSync(f)) { res.setHeader('Content-Length', fs.statSync(f).size); fs.createReadStream(f).pipe(res); return; }
         }

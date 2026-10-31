@@ -18,9 +18,12 @@ export default function Mesh() {
     <div className="flex flex-col gap-3">
     <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
       {GUIDE.map(([h, p], i) => (
-        <div key={h} className="glass px-4 py-3.5">
-          <div className="flex items-center gap-2"><span className="num text-[11px] text-accent">0{i + 1}</span><span className="text-[13.5px] font-medium text-hi">{h}</span></div>
-          <p className="mt-1.5 text-[12.5px] leading-relaxed text-muted">{p}</p>
+        <div key={h} className="glass group relative overflow-hidden px-4.5 py-3.5 transition-all duration-200 hover:border-white/20">
+          <div className="flex items-center gap-2">
+            <span className="num flex h-5 w-5 items-center justify-center rounded bg-accent/15 text-[11px] font-semibold text-accent">0{i + 1}</span>
+            <span className="text-[13.5px] font-medium text-hi">{h}</span>
+          </div>
+          <p className="mt-2 text-[12.5px] leading-relaxed text-muted">{p}</p>
         </div>
       ))}
     </div>
@@ -108,18 +111,26 @@ function Routes({ node }: { node: string }) {
         {M.age > 5 && <Chip color="#f87171">silent {Math.round(M.age)} s</Chip>}
       </div>
       <table className="num w-full text-[12px]">
-        <thead><tr className="text-left text-[10.5px] text-faint"><th className="py-1 font-normal">destination</th><th className="font-normal">next hop</th><th className="font-normal">hops</th><th className="text-right font-normal">cost</th></tr></thead>
+        <thead>
+          <tr className="border-b border-white/[.08] text-left text-[10.5px] font-mono tracking-wider text-faint uppercase">
+            <th className="py-2 font-normal">destination</th>
+            <th className="font-normal">next hop</th>
+            <th className="font-normal">hops</th>
+            <th className="text-right font-normal">cost</th>
+          </tr>
+        </thead>
         <tbody>
           {rows.map(([d, [h, nh]]) => (
-            <tr key={d} className="border-t border-white/[.05]">
-              <td className="py-1.5 text-fg">{d === 'base' || d === 'brain' ? <span className="text-accent">{d}</span> : short(d)}</td>
-              <td className="text-muted">{short(nh)}</td><td className="text-muted">{h}</td>
-              <td className="text-right text-fg">{M.cost?.[d] != null ? M.cost[d].toFixed(2) : '—'}</td>
+            <tr key={d} className="border-b border-white/[.04] transition-colors hover:bg-white/[.02]">
+              <td className="py-2 text-fg">{d === 'base' || d === 'brain' ? <span className="font-semibold text-accent">{d}</span> : short(d)}</td>
+              <td className="text-muted">{short(nh)}</td>
+              <td className="text-muted">{h}</td>
+              <td className="text-right font-mono text-fg">{M.cost?.[d] != null ? M.cost[d].toFixed(2) : '—'}</td>
             </tr>
           ))}
         </tbody>
       </table>
-      <p className="mt-2 text-[11px] text-faint">base and brain are service addresses (anycast): the route follows whichever node hosts them.</p>
+      <p className="mt-2.5 text-[11px] text-faint">base and brain are service addresses (anycast): the route follows whichever node hosts them.</p>
     </div>
   );
 }
@@ -137,7 +148,7 @@ function Tracer() {
         <div className="mt-3 grid min-h-0 flex-1 gap-3 md:grid-cols-[180px_minmax(0,1fr)]">
           <ul className="max-h-[300px] overflow-y-auto pr-1">
             {list.map(x => (
-              <li key={x.id}><button onClick={() => setPick(x.id)} className={cn('num flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-[11.5px]', x === t ? 'bg-white/[.08] text-fg' : 'text-muted hover:bg-white/[.04]')}>
+              <li key={x.id}><button onClick={() => setPick(x.id)} className={cn('num flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-[11.5px] transition-colors', x === t ? 'bg-white/[.08] text-fg' : 'text-muted hover:bg-white/[.04]')}>
                 <i className="h-1.5 w-1.5 rounded-full" style={{ background: KIND_C[x.k] || '#fff' }} />
                 <span className="w-10 text-faint">{clockStr(x.mt)}</span><span>{short(x.o)}</span><span className="ml-auto">{x.h.length}h</span>
               </button></li>
@@ -172,7 +183,7 @@ function TraceDetail({ t }: { t: { k: string; o: string; final: string; at: stri
         ))}
       </ol>
       {t.k === 'sighting' && t.p && Object.keys(t.p).length > 0 && (
-        <pre className="num mt-1 max-h-28 overflow-auto rounded-lg bg-black/30 p-2 text-[10.5px] leading-snug text-muted">{JSON.stringify(t.p, null, 0).slice(0, 600)}</pre>
+        <pre className="num mt-2 max-h-32 overflow-auto rounded-lg border border-white/10 bg-black/50 p-2.5 font-mono text-[10.5px] leading-relaxed text-muted scrollbar-thin">{JSON.stringify(t.p, null, 2)}</pre>
       )}
     </div>
   );

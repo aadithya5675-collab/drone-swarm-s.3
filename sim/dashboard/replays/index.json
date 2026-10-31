@@ -2,8 +2,8 @@
  {
   "file": "mission_demo.jsonl",
   "title": "Demo mission \u00b7 Wayanad",
-  "note": "Landslide, search, a Scout lost and replaced by a reserve, the planner Mapper lost and the Brain moves to Mapper 2, people located",
-  "minutes": 15.6,
-  "mb": 32.7
+  "note": "Landslide, search, a Scout lost and replaced by a reserve, the planner Mapper lost and Mapper 2 takes over, every drone home",
+  "minutes": 16.0,
+  "mb": 26.0
  }
 ]
